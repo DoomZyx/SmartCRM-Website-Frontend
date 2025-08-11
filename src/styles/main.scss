@@ -29,29 +29,43 @@ body {
   }
 }
 
-// Scroll fluide global
+// Scroll fluide global optimisé
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px; // Pour éviter que le header cache le contenu lors du scroll vers les ancres
 }
 
-// Scrollbar personnalisée
+body {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; // Pour un scroll fluide sur iOS
+}
+
+// Scrollbar personnalisée optimisée
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px; // Plus fine pour un look plus moderne
 }
 
 ::-webkit-scrollbar-track {
   background: $bg-secondary;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: $gradient-primary;
-  border-radius: 8px;
-  border: 2px solid $bg-secondary;
+  border-radius: 4px;
+  border: 1px solid $bg-secondary;
+  transition: all 0.3s ease; // Animation fluide
 
   &:hover {
     background: linear-gradient(135deg, $accent-secondary, $accent-primary);
+    transform: scaleX(1.2); // Effet de zoom au hover
   }
+}
+
+// Scrollbar pour Firefox
+* {
+  scrollbar-width: thin;
+  scrollbar-color: $accent-primary $bg-secondary;
 }
 
 // Animations globales
@@ -230,10 +244,11 @@ html {
   }
 }
 
+
 // Styles pour la grille équipe
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
+  justify-content: center;
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -414,3 +429,4 @@ h6 {
 @import "../components/Home/HomeCTA/HomeCTA";
 @import "../components/Shared/CTASection/CTASection";
 @import "../components/Shared/PageContainer/PageContainer";
+@import "../components/Shared/DemoModal/DemoModal";

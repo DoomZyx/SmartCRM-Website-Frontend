@@ -42,14 +42,14 @@ const Contact = () => {
         </div>
       </Section>
 
-      <Section>
+      {/* <Section>
         <SectionHeader
           title="Nos "
           gradientText="Départements"
           description="Contactez le bon département selon votre besoin."
         />
         <FeaturesGrid features={departments} columns={4} />
-      </Section>
+      </Section> */}
 
       <Section variant="alt">
         <div className="contact-form-grid">
@@ -68,9 +68,9 @@ const Contact = () => {
         </div>
       </Section>
 
-      <Section>
+      {/* <Section>
         <MapSection />
-      </Section>
+      </Section> */}
     </PageContainer>
   );
 };

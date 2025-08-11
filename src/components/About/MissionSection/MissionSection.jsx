@@ -1,17 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Globe } from "lucide-react";
+import { useOptimizedAnimation } from "../../../hooks/useOptimizedAnimation";
 import "./MissionSection.scss";
 
 const MissionSection = ({ title, gradientText, description, buttonText }) => {
+  const animationProps = useOptimizedAnimation(0, "fadeUp");
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
-      className="mission-section"
-    >
+    <motion.div {...animationProps} className="mission-section">
       <div className="mission-card">
         <div className="mission-icon">
           <Globe className="icon" />

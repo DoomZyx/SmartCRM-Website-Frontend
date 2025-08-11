@@ -4,9 +4,11 @@
   @include card-base;
   position: relative;
   transition: all 0.3s ease;
+  transform: translateZ(0); // Force GPU acceleration pour Firefox
+  backface-visibility: hidden; // Optimisation Firefox
 
   &:hover {
-    transform: translateY(-4px);
+    transform: translateY(-4px) translateZ(0);
     border-color: $accent-primary;
     box-shadow: 0 8px 32px rgba(74, 144, 226, 0.3);
   }

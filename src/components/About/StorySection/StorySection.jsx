@@ -1,17 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useOptimizedAnimation } from "../../../hooks/useOptimizedAnimation";
 import "./StorySection.scss";
 
 const StorySection = ({ title, gradientText, paragraphs, stats }) => {
+  const leftAnimation = useOptimizedAnimation(0, "fadeUp");
+  const rightAnimation = useOptimizedAnimation(0, "fadeUp");
+
   return (
     <div className="story-grid">
-      <motion.div
-        initial={{ opacity: 0, x: -30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="story-content"
-      >
+      <motion.div {...leftAnimation} className="story-content">
         <h2 className="story-title">
           {title}
           {gradientText && (
@@ -25,13 +23,7 @@ const StorySection = ({ title, gradientText, paragraphs, stats }) => {
         ))}
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, x: 30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="stats-container"
-      >
+      <motion.div {...rightAnimation} className="stats-container">
         <div className="stats-card">
           <div className="stats-grid">
             {stats.map((stat, index) => (

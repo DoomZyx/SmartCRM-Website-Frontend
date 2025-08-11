@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import useOptimizedAnimation from "../../../hooks/useOptimizedAnimation";
+import { useOptimizedAnimation } from "../../../hooks/useOptimizedAnimation";
+import { useDemoModal } from "../../../contexts/DemoModalContext";
 import "./CTASection.scss";
 
 const CTASection = ({
@@ -10,6 +11,7 @@ const CTASection = ({
   primaryButton,
   secondaryButton,
 }) => {
+  const { openDemoModal } = useDemoModal();
   const animationProps = useOptimizedAnimation(0);
 
   return (
@@ -26,10 +28,14 @@ const CTASection = ({
             <p className="cta-description">{description}</p>
             <div className="cta-buttons">
               {primaryButton && (
-                <button className="btn btn-primary">{primaryButton}</button>
+                <button className="btn btn-primary" onClick={openDemoModal}>
+                  {primaryButton}
+                </button>
               )}
               {secondaryButton && (
-                <button className="btn btn-secondary">{secondaryButton}</button>
+                <button className="btn btn-secondary" onClick={openDemoModal}>
+                  {secondaryButton}
+                </button>
               )}
             </div>
           </div>

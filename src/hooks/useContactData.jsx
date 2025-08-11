@@ -15,20 +15,20 @@ export const useContactData = () => {
     {
       icon: <Mail className="icon" />,
       title: "Email",
-      value: "contact@smartcrm.com",
+      value: "contact.smartcrm@gmail.com",
       description: "Notre équipe vous répond sous 24h",
     },
     {
       icon: <Phone className="icon" />,
       title: "Téléphone",
-      value: "+33 1 23 45 67 89",
+      value: "+33 7 49 34 55 10",
       description: "Lun-Ven 9h-18h",
     },
     {
       icon: <MapPin className="icon" />,
       title: "Adresse",
-      value: "123 Rue de l'Innovation, 75001 Paris",
-      description: "Siège social",
+      value: "125 rue de la République, 57240 Knutange",
+      // description: "Siège social",
     },
     {
       icon: <Clock className="icon" />,
@@ -43,7 +43,7 @@ export const useContactData = () => {
       icon: <MessageCircle className="icon" />,
       title: "Support Client",
       description: "Assistance technique et questions générales",
-      email: "support@smartcrm.com",
+      email: "contact.smartcrm@gmail.com",
     },
     {
       icon: <Users className="icon" />,

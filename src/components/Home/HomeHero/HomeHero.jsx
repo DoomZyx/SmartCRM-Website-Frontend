@@ -1,11 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useDemoModal } from "../../../contexts/DemoModalContext";
 import "./HomeHero.scss";
 
 const HomeHero = () => {
+  const { openDemoModal } = useDemoModal();
+
   const stats = [
-    { number: "10,000+", label: "Entreprises satisfaites" },
+    { number: "5", label: "Entreprises satisfaites" },
     { number: "99.9%", label: "Temps de disponibilité" },
     { number: "24/7", label: "Support client" },
   ];
@@ -40,11 +43,10 @@ const HomeHero = () => {
           </p>
 
           <div className="hero-cta">
-            <button className="btn btn-primary">
-              Commencer gratuitement
+            <button className="btn btn-primary" onClick={openDemoModal}>
+              Demander une démonstation
               <ArrowRight className="icon" />
             </button>
-            <button className="btn btn-secondary">Voir la démo</button>
           </div>
 
           {/* Stats */}

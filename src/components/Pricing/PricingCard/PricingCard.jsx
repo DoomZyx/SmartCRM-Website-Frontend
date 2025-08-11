@@ -1,15 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Check, Star } from "lucide-react";
+import { useOptimizedAnimation } from "../../../hooks/useOptimizedAnimation";
 import "./PricingCard.scss";
 
 const PricingCard = ({ plan, delay = 0 }) => {
+  const animationProps = useOptimizedAnimation(delay, "fadeUp");
+  
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay }}
-      viewport={{ once: true }}
+      {...animationProps}
       className={`pricing-card ${plan.popular ? "popular" : ""}`}
     >
       {plan.popular && (
@@ -26,8 +26,8 @@ const PricingCard = ({ plan, delay = 0 }) => {
         <p className="pricing-description">{plan.description}</p>
 
         <div className="pricing-price">
-          <span className="price-amount">€{plan.price}</span>
-          <span className="price-period">/{plan.period}</span>
+          <span className="price-amount">{plan.price}€</span>
+          <div className="maintenance-price">{plan.period}</div>
         </div>
 
         <button

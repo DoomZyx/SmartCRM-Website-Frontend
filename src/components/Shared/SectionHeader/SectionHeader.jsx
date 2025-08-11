@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import useOptimizedAnimation from "../../../hooks/useOptimizedAnimation";
+import { useOptimizedAnimation } from "../../../hooks/useOptimizedAnimation";
 import "./SectionHeader.scss";
 
 const SectionHeader = ({ title, gradientText, description, delay = 0 }) => {

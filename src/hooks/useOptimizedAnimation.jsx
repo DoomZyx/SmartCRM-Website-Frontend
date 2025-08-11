@@ -1,24 +1,55 @@
 import { useMemo } from "react";
 
-const useOptimizedAnimation = (index = 0, baseDelay = 0.05) => {
-  const animationProps = useMemo(
-    () => ({
-      initial: { opacity: 0, y: 20 },
-      whileInView: { opacity: 1, y: 0 },
+export const useOptimizedAnimation = (delay = 0, variant = "fadeUp") => {
+  const animationProps = useMemo(() => {
+    const baseProps = {
+      initial: { opacity: 0 },
+      whileInView: { opacity: 1 },
       transition: {
-        duration: 0.4, // Durée plus courte
-        delay: Math.min(index * baseDelay, 0.3), // Délai max de 0.3s
+        duration: 0.15,
+        delay: 0,
         ease: "easeOut",
       },
       viewport: {
-        once: true,
-        margin: "0px 0px -50px 0px", // Déclenche plus tôt
+        once: true, // Évite les doublons
+        margin: "-300px",
+        amount: 0.05,
       },
-    }),
-    [index, baseDelay]
-  );
+    };
+
+    switch (variant) {
+      case "fadeUp":
+        return {
+          ...baseProps,
+          initial: { opacity: 0, y: 10 }, // Déplacement plus subtil
+          whileInView: { opacity: 1, y: 0 },
+        };
+
+      case "fadeIn":
+        return {
+          ...baseProps,
+          initial: { opacity: 0 },
+          whileInView: { opacity: 1 },
+        };
+
+      case "scaleIn":
+        return {
+          ...baseProps,
+          initial: { opacity: 0, scale: 0.95 },
+          whileInView: { opacity: 1, scale: 1 },
+        };
+
+      case "slideIn":
+        return {
+          ...baseProps,
+          initial: { opacity: 0, x: -20 },
+          whileInView: { opacity: 1, x: 0 },
+        };
+
+      default:
+        return baseProps;
+    }
+  }, [delay, variant]);
 
   return animationProps;
 };
-
-export default useOptimizedAnimation;

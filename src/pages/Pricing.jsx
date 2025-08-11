@@ -52,7 +52,7 @@ const Pricing = () => {
         title="Prêt à "
         gradientText="commencer"
         description="Rejoignez des milliers d'entreprises qui font confiance à SmartCRM. Commencez votre essai gratuit aujourd'hui."
-        primaryButton="Essai gratuit 14 jours"
+        primaryButton="Demander une démonstation"
         secondaryButton="Parler à un expert"
       />
     </PageContainer>

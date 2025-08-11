@@ -42,23 +42,22 @@ const Services = () => {
         <FeaturesGrid features={aiFeatures} columns={4} variant="alt" />
       </Section>
 
-      <Section variant="alt">
+      {/* <Section variant="alt">
         <SectionHeader
           title="Intégrations "
           gradientText="Flexibles"
           description="Connectez SmartCRM à vos outils existants et accédez à vos données depuis n'importe où."
         />
         <FeaturesGrid features={integrations} columns={3} />
-      </Section>
+      </Section> */}
 
       <CTASection
         title="Prêt à découvrir nos "
         gradientText="services"
         description="Testez gratuitement SmartCRM pendant 14 jours et découvrez comment nous pouvons transformer votre business."
-        primaryButton="Essai gratuit 14 jours"
-        secondaryButton="Demander une démo"
+        primaryButton="Demander une démonstation"
       />
-    </PageContainer>
+    </PageContainer> 
   );
 };
 

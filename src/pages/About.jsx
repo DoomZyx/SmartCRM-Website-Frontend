@@ -61,7 +61,7 @@ const About = () => {
         title="Prêt à nous "
         gradientText="rejoindre"
         description="Rejoignez des milliers d'entreprises qui font confiance à SmartCRM pour leur transformation digitale."
-        primaryButton="Essai gratuit 14 jours"
+        primaryButton="Demander une démonstation"
         secondaryButton="Parler à un expert"
       />
     </PageContainer>

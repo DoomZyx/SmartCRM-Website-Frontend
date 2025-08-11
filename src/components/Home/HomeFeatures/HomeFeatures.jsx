@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Users, MessageCircle, BarChart3, Zap } from "lucide-react";
-import useOptimizedAnimation from "../../../hooks/useOptimizedAnimation";
+import { useOptimizedAnimation } from "../../../hooks/useOptimizedAnimation";
 import "./HomeFeatures.scss";
 
 const HomeFeatures = () => {

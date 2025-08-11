@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Send } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Send, CheckCircle, AlertCircle } from "lucide-react";
+import { useContactForm } from "../../../hooks/useContactForm";
 import "./ContactForm.scss";
 
 const ContactForm = () => {
@@ -11,6 +12,9 @@ const ContactForm = () => {
     message: "",
   });
 
+  const { submitContactForm, isLoading, error, success, resetForm } =
+    useContactForm();
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -18,11 +22,28 @@ const ContactForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Formulaire soumis:", formData);
-    alert("Message envoyé ! Nous vous répondrons dans les plus brefs délais.");
+
+    try {
+      await submitContactForm(formData);
+      // Réinitialiser le formulaire en cas de succès
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        subject: "",
+        message: "",
+      });
+    } catch (err) {
+      // L'erreur est déjà gérée dans le hook
+    }
   };
+
+  // Réinitialiser les états quand le composant se monte
+  useEffect(() => {
+    resetForm();
+  }, [resetForm]);
 
   return (
     <form onSubmit={handleSubmit} className="contact-form">
@@ -107,12 +128,43 @@ const ContactForm = () => {
         />
       </div>
 
-      <button type="submit" className="btn btn-primary submit-btn">
-        <Send className="icon" />
-        Envoyer le message
+      {/* Messages de succès et d'erreur */}
+      {success && (
+        <div className="form-message success">
+          <CheckCircle className="icon" />
+          <span>
+            Message envoyé avec succès ! Nous vous répondrons dans les plus
+            brefs délais.
+          </span>
+        </div>
+      )}
+
+      {error && (
+        <div className="form-message error">
+          <AlertCircle className="icon" />
+          <span>{error}</span>
+        </div>
+      )}
+
+      <button
+        type="submit"
+        className="btn btn-primary submit-btn"
+        disabled={isLoading}
+      >
+        {isLoading ? (
+          <>
+            <div className="spinner"></div>
+            Envoi en cours...
+          </>
+        ) : (
+          <>
+            <Send className="icon" />
+            Envoyer le message
+          </>
+        )}
       </button>
     </form>
   );
 };
 
-export default ContactForm; 
+export default ContactForm;

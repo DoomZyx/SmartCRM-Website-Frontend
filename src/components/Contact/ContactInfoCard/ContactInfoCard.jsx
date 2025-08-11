@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import useOptimizedAnimation from "../../../hooks/useOptimizedAnimation";
+import { useOptimizedAnimation } from "../../../hooks/useOptimizedAnimation";
 import "./ContactInfoCard.scss";
 
 const ContactInfoCard = ({ icon, title, value, description, delay = 0 }) => {

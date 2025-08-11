@@ -4,3 +4,4 @@ export { default as SectionHeader } from "./SectionHeader/SectionHeader.jsx";
 export { default as CTASection } from "./CTASection/CTASection.jsx";
 export { default as PageContainer } from "./PageContainer/PageContainer.jsx";
 export { default as ScrollToTop } from "./ScrollToTop/ScrollToTop.jsx";
+export { default as DemoModal } from "./DemoModal/DemoModal.jsx";

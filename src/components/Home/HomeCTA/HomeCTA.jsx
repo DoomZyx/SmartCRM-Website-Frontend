@@ -1,8 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useDemoModal } from "../../../contexts/DemoModalContext";
 import "./HomeCTA.scss";
 
 const HomeCTA = () => {
+  const { openDemoModal } = useDemoModal();
+
   return (
     <section className="cta-section">
       <div className="cta-content">
@@ -22,10 +25,12 @@ const HomeCTA = () => {
               pour optimiser leur relation client.
             </p>
             <div className="cta-buttons">
-              <button className="btn btn-primary">
-                Essai gratuit 14 jours
+              <button className="btn btn-primary" onClick={openDemoModal}>
+                Demander une démonstation
               </button>
-              <button className="btn btn-secondary">Parler à un expert</button>
+              <button className="btn btn-secondary" onClick={openDemoModal}>
+                Parler à un expert
+              </button>
             </div>
           </div>
         </motion.div>
