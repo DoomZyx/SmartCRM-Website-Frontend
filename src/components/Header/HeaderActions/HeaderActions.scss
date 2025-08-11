@@ -1,0 +1,16 @@
+@use "../../../styles/variables" as *;
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+
+  .btn {
+    font-size: 0.875rem;
+    padding: 8px 16px;
+  }
+}

@@ -1,0 +1,78 @@
+@use "../../../styles/variables" as *;
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.story-content {
+  h2 {
+    margin-bottom: 24px;
+  }
+}
+
+.story-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 24px;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.story-text {
+  color: $text-secondary;
+  margin-bottom: 24px;
+  line-height: 1.6;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.stats-container {
+  position: relative;
+}
+
+.stats-card {
+  @include glassmorphism;
+  border-radius: 16px;
+  padding: 32px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: $accent-primary;
+    box-shadow: 0 8px 32px rgba(74, 144, 226, 0.3);
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 1.875rem;
+  font-weight: bold;
+  @include gradient-text;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  color: $text-muted;
+  font-size: 0.875rem;
+}

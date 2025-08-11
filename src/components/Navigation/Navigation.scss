@@ -1,0 +1,117 @@
+@use "../../styles/variables" as *;
+
+.navigation {
+  display: flex;
+  align-items: center;
+}
+
+.nav-desktop {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.nav-link {
+  color: $text-secondary;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &:hover {
+    color: $text-primary;
+  }
+
+  &.active {
+    color: $accent-primary;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: $accent-primary;
+    transition: width 0.3s ease;
+  }
+
+  &:hover::after,
+  &.active::after {
+    width: 100%;
+  }
+}
+
+.mobile-menu-button {
+  display: none;
+  background: none;
+  border: none;
+  color: $text-primary;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: $bg-secondary;
+  border-top: 1px solid $border-primary;
+  z-index: 1000;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-menu-content {
+  padding: 24px 32px;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobile-nav-link {
+  color: $text-secondary;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 12px 0;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+
+  &:hover {
+    color: $text-primary;
+  }
+
+  &.active {
+    color: $accent-primary;
+    border-bottom-color: $accent-primary;
+  }
+}
