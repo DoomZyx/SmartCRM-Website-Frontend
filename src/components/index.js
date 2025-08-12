@@ -36,3 +36,9 @@ export { default as MapSection } from "./Contact/MapSection/MapSection.jsx";
 export { default as StorySection } from "./About/StorySection/StorySection.jsx";
 export { default as TeamCard } from "./About/TeamCard/TeamCard.jsx";
 export { default as MissionSection } from "./About/MissionSection/MissionSection.jsx";
+
+// Composant Footer
+export { default as Footer } from "./Footer/Footer.jsx";
+
+// Composant CookieBanner
+export { default as CookieBanner } from "./Shared/CookieBanner/CookieBanner.jsx";

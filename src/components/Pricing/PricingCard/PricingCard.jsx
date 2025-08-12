@@ -1,12 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Check, Star } from "lucide-react";
+import { Check, Star, Sparkles, Clock } from "lucide-react";
+import { useDemoModal } from "../../../contexts/DemoModalContext";
 import { useOptimizedAnimation } from "../../../hooks/useOptimizedAnimation";
 import "./PricingCard.scss";
 
 const PricingCard = ({ plan, delay = 0 }) => {
   const animationProps = useOptimizedAnimation(delay, "fadeUp");
-  
+  const { openDemoModal } = useDemoModal();
+
   return (
     <motion.div
       {...animationProps}
@@ -21,6 +23,24 @@ const PricingCard = ({ plan, delay = 0 }) => {
         </div>
       )}
 
+      {plan.name === "Business" && (
+        <div className="new-badge">
+          <div className="badge-content">
+            <Sparkles className="icon" />
+            Nouveau
+          </div>
+        </div>
+      )}
+
+      {plan.name === "Enterprise" && (
+        <div className="development-badge">
+          <div className="badge-content">
+            <Clock className="icon" />
+            En développement
+          </div>
+        </div>
+      )}
+
       <div className="pricing-header">
         <h3 className="pricing-title">{plan.name}</h3>
         <p className="pricing-description">{plan.description}</p>
@@ -28,14 +48,16 @@ const PricingCard = ({ plan, delay = 0 }) => {
         <div className="pricing-price">
           <span className="price-amount">{plan.price}€</span>
           <div className="maintenance-price">{plan.period}</div>
+          <div className="API-price">{plan.API}</div>
         </div>
 
         <button
+          onClick={openDemoModal}
           className={`btn pricing-btn ${
             plan.popular ? "btn-primary" : "btn-secondary"
           }`}
         >
-          Commencer l'essai gratuit
+          Demander une démonstration
         </button>
       </div>
 

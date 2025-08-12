@@ -21,8 +21,7 @@ const HomeCTA = () => {
               <span className="text-gradient">business</span> ?
             </h2>
             <p className="cta-description">
-              Rejoignez des milliers d'entreprises qui font confiance à SmartCRM
-              pour optimiser leur relation client.
+            Optimisez vos coûts et votre efficacité
             </p>
             <div className="cta-buttons">
               <button className="btn btn-primary" onClick={openDemoModal}>

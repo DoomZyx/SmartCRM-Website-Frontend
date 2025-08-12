@@ -5,18 +5,22 @@ export const usePricingData = () => {
       price: "21 600",
       period: "+ 3 600€/an",
       description: "Parfait pour les petites entreprises",
+      API: "+ Frais API selon volume d'appels",
       features: [
         "1 ligne téléphonique IA",
         "Dashboard analytics de base",
+        "Gestion des appels reçus",
         "Formation équipe (1 session)",
         "Support email standard",
       ],
-      popular: false,
+      isNew: false,
+      popular: true,
     },
     {
       name: "Business",
       price: "42 000",
       period: "+ 6 000€/an",
+      API: "+ Frais API selon volume d'appels",
       description: "Idéal pour les équipes en croissance",
       features: [
         "Multi-lignes téléphoniques",
@@ -24,15 +28,16 @@ export const usePricingData = () => {
         "CRM complet intégré",
         "Analytics avancés + exports",
         "Intégrations sur-mesure (2 max)",
-        "Formation + support prioritaire",
-        "App Electron personnalisée",
+        "Application desktop + web",
       ],
-      popular: true,
+      popular: false,
+      isNew: true,
     },
     {
       name: "Enterprise",
       price: "66 000",
       period: "+ 9 600€/an",
+      API: "+ Frais API selon volume d'appels",
       description: "Pour les grandes entreprises",
       features: [
         "Solution 100% personnalisée",
@@ -43,6 +48,7 @@ export const usePricingData = () => {
         "API développeur + webhooks custom",
       ],
       popular: false,
+      isNew: false,
     },
   ];
 
@@ -109,9 +115,9 @@ export const usePricingData = () => {
         "Non, nos tarifs sont transparents. Le prix affiché est le prix que vous payez, sans frais cachés.",
     },
     {
-      question: "L'essai gratuit est-il vraiment gratuit ?",
+      question: "Proposez-vous une formation pour mon équipe ?",
       answer:
-        "Absolument ! Vous pouvez tester toutes les fonctionnalités pendant 14 jours sans engagement.",
+        "Oui, la formation de votre équipe est incluse dans nos tarifs, ainsi que le support technique pour vous accompagner dans la prise en main de la solution.",
     },
     {
       question: "Proposez-vous des tarifs personnalisés ?",

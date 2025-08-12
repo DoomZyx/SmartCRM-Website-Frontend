@@ -54,7 +54,7 @@ const Services = () => {
       <CTASection
         title="Prêt à découvrir nos "
         gradientText="services"
-        description="Testez gratuitement SmartCRM pendant 14 jours et découvrez comment nous pouvons transformer votre business."
+        description="Demandez-nous une démonstration et découvrez comment nous pouvons transformer votre business."
         primaryButton="Demander une démonstation"
       />
     </PageContainer> 

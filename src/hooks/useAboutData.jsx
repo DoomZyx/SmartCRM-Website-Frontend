@@ -7,8 +7,8 @@ export const useAboutData = () => {
       "Il a donc décidé de créer une plateforme qui combine la puissance d'un CRM moderne avec l'intelligence artificielle, le tout dans une interface intuitive et accessible. L'objectif ? Permettre à chaque entreprise de bénéficier des mêmes outils que les grandes corporations.",
     ],
     stats: [
-      { number: "10,000+", label: "Clients satisfaits" },
-      { number: "50+", label: "Pays desservis" },
+      { number: "+5", label: "Clients satisfaits" },
+      { number: "2", label: "Pays desservis" },
       { number: "99.9%", label: "Disponibilité" },
       { number: "24/7", label: "Support client" },
     ],

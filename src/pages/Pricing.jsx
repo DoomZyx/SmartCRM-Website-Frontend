@@ -23,7 +23,7 @@ const Pricing = () => {
       <Hero
         title="Tarifs "
         gradientText="Transparents"
-        description="Choisissez le plan qui correspond le mieux à vos besoins. Tous nos plans incluent un essai gratuit de 14 jours."
+        description="Choisissez le plan qui correspond le mieux à vos besoins. Tous nos plans incluent une démonstration gratuite."
       />
 
       <Section variant="alt">
@@ -51,7 +51,8 @@ const Pricing = () => {
       <CTASection
         title="Prêt à "
         gradientText="commencer"
-        description="Rejoignez des milliers d'entreprises qui font confiance à SmartCRM. Commencez votre essai gratuit aujourd'hui."
+        description="Demandez-nous une démonstration et découvrez comment nous pouvons transformer votre business.
+"
         primaryButton="Demander une démonstation"
         secondaryButton="Parler à un expert"
       />

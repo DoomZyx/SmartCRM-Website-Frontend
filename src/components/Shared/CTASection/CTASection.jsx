@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { useOptimizedAnimation } from "../../../hooks/useOptimizedAnimation";
 import { useDemoModal } from "../../../contexts/DemoModalContext";
 import "./CTASection.scss";
@@ -12,7 +13,16 @@ const CTASection = ({
   secondaryButton,
 }) => {
   const { openDemoModal } = useDemoModal();
+  const navigate = useNavigate();
   const animationProps = useOptimizedAnimation(0);
+
+  const handleSecondaryClick = () => {
+    if (secondaryButton === "Parler à un expert") {
+      navigate("/contact");
+    } else {
+      openDemoModal();
+    }
+  };
 
   return (
     <section className="cta-section">
@@ -33,7 +43,7 @@ const CTASection = ({
                 </button>
               )}
               {secondaryButton && (
-                <button className="btn btn-secondary" onClick={openDemoModal}>
+                <button className="btn btn-secondary" onClick={handleSecondaryClick}>
                   {secondaryButton}
                 </button>
               )}
