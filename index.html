@@ -1,11 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <!-- Google tag (gtag.js) -->
+
+    <!-- SEO Meta Tags -->
+    <title>
+      SmartCRM - CRM Intelligent avec IA Téléphonique | Solution Complète pour
+      Entreprises
+    </title>
+    <meta
+      name="description"
+      content="SmartCRM combine un CRM moderne avec l'intelligence artificielle téléphonique pour transformer votre relation client. Solution complète avec chatbot IA, analytics en temps réel et automatisation."
+    />
+    <meta
+      name="keywords"
+      content="CRM intelligent, IA téléphonique, chatbot IA, logiciel CRM, gestion relation client, automatisation vente, analytics CRM, prospection automatisée, centre d'appels IA, solution CRM France"
+    />
+    <meta name="author" content="SmartCRM" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mysmartcrm.fr" />
+    <meta
+      property="og:title"
+      content="SmartCRM - CRM Intelligent avec IA Téléphonique"
+    />
+    <meta
+      property="og:description"
+      content="Révolutionnez votre relation client avec SmartCRM. CRM moderne + IA téléphonique pour maximiser vos ventes et fidéliser vos clients."
+    />
+    <meta property="og:image" content="https://mysmartcrm.fr/og-image.jpg" />
+    <meta property="og:site_name" content="SmartCRM" />
+    <meta property="og:locale" content="fr_FR" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://mysmartcrm.fr" />
+    <meta
+      property="twitter:title"
+      content="SmartCRM - CRM Intelligent avec IA Téléphonique"
+    />
+    <meta
+      property="twitter:description"
+      content="Révolutionnez votre relation client avec SmartCRM. CRM moderne + IA téléphonique pour maximiser vos ventes."
+    />
+    <meta
+      property="twitter:image"
+      content="https://smartcrm.fr/twitter-image.jpg"
+    />
+    <meta property="twitter:creator" content="@SmartCRM" />
+
+    <!-- Favicon et Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#00D4FF" />
+
+    <!-- Preconnect pour les performances -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="//www.google-analytics.com" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mysmartcrm.fr" />
+
+    <!-- Hreflang pour le multilangue (si applicable) -->
+    <link rel="alternate" hreflang="fr" href="https://mysmartcrm.fr" />
+    <link rel="alternate" hreflang="en" href="https://mysmartcrm.fr/en" />
+    <link rel="alternate" hreflang="x-default" href="https://mysmartcrm.fr" />
+
+    <!-- Structured Data - JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "SmartCRM",
+        "description": "CRM intelligent avec IA téléphonique pour transformer votre relation client",
+        "url": "https://smartcrm.fr",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web, Windows, MacOS, Mobile",
+        "softwareVersion": "1.0",
+        "releaseNotes": "Solution CRM complète avec intelligence artificielle téléphonique",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Plan Starter",
+            "price": "21600",
+            "priceCurrency": "EUR",
+            "billingIncrement": "P1Y",
+            "priceValidUntil": "2024-12-31"
+          }
+        ],
+        "provider": {
+          "@type": "Organization",
+          "name": "SmartCRM",
+          "url": "https://mysmartcrm.fr",
+          "logo": "https://smartcrm.fr/logo.png",
+          "sameAs": [
+            "https://www.linkedin.com/company/smartcrm",
+            "https://twitter.com/smartcrm"
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "FR",
+            "addressLocality": "France"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "availableLanguage": ["French", "English"],
+            "url": "https://mysmartcrm.fr/contact"
+          }
+        },
+        "featureList": [
+          "IA téléphonique avancée",
+          "CRM intégré",
+          "Analytics en temps réel",
+          "Automatisation complète",
+          "Chatbot intelligent"
+        ]
+      }
+    </script>
+
+    <!-- Google Analytics -->
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-X3V0YM81NX"
@@ -16,14 +139,27 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
-      gtag("config", "G-X3V0YM81NX");
+      gtag("config", "G-X3V0YM81NX", {
+        page_title: "SmartCRM - Accueil",
+        page_location: window.location.href,
+      });
     </script>
-    
-    <title>SmartCRM | Smart CRM with AI Voice Assistant</title>
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/src/styles/main.scss" as="style" />
+    <link rel="preload" href="/src/main.jsx" as="script" />
   </head>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- No-script fallback -->
+    <noscript>
+      <p>
+        JavaScript est requis pour utiliser SmartCRM. Veuillez activer
+        JavaScript dans votre navigateur.
+      </p>
+    </noscript>
   </body>
 </html>
