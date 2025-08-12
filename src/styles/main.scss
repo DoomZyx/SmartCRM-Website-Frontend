@@ -29,6 +29,109 @@ body {
   }
 }
 
+// Optimisations spécifiques pour mobile et tablette
+@media (max-width: 1024px) {
+  // Amélioration des performances d'animation sur mobile/tablette
+  * {
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+  }
+
+  // Optimisation des transitions sur mobile
+  .animate-fade-in,
+  .animate-fade-up,
+  .animate-slide-left,
+  .animate-slide-right {
+    animation-duration: 0.4s !important;
+    animation-timing-function: ease-out !important;
+  }
+
+  // Réduction des effets de hover sur mobile
+  .card:hover,
+  .feature-card:hover,
+  .btn:hover {
+    transform: none !important;
+    box-shadow: inherit !important;
+  }
+
+  // Optimisation des animations de scroll
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+// Optimisations spécifiques pour mobile uniquement
+@media (max-width: 768px) {
+  // Désactivation des animations complexes sur mobile
+  .effect-1,
+  .effect-2 {
+    animation: none !important;
+    opacity: 0.05 !important;
+  }
+
+  // Simplification des animations de texte
+  .text-gradient {
+    background-attachment: scroll !important;
+  }
+
+  // Optimisation des transitions
+  .btn,
+  .card,
+  .feature-card {
+    transition: opacity 0.2s ease !important;
+  }
+
+  // Amélioration de la performance des animations
+  [data-framer-motion] {
+    will-change: auto !important;
+  }
+}
+
+// Styles globaux pour le menu mobile
+.mobile-menu-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.8) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  z-index: 999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.mobile-menu-overlay .mobile-menu-content {
+  background: $bg-secondary !important;
+  border-radius: 16px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+  width: 90% !important;
+  max-width: 400px !important;
+  min-width: 300px !important;
+  margin: 0 auto !important;
+  position: relative !important;
+  transform: none !important;
+  overflow: hidden !important;
+}
+
 // Scroll fluide global optimisé
 html {
   scroll-behavior: smooth;

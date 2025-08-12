@@ -8,7 +8,7 @@ const HomeHero = () => {
   const { openDemoModal } = useDemoModal();
 
   const stats = [
-    { number: "5", label: "Entreprises satisfaites" },
+    { number: "100%", label: "Satisfaction client" },
     { number: "99.9%", label: "Temps de disponibilité" },
     { number: "24/7", label: "Support client" },
   ];
@@ -64,4 +64,4 @@ const HomeHero = () => {
   );
 };
 
-export default HomeHero; 
+export default HomeHero;

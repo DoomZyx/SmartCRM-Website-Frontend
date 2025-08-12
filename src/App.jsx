@@ -5,6 +5,7 @@ import CookieBanner from "./components/Shared/CookieBanner/CookieBanner";
 import ScrollToTop from "./components/Shared/ScrollToTop/ScrollToTop";
 import DemoModal from "./components/Shared/DemoModal/DemoModal";
 import { DemoModalProvider, useDemoModal } from "./contexts/DemoModalContext";
+import { AnimationProvider } from "./components/Shared/AnimationProvider/AnimationProvider";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import About from "./pages/About";
@@ -59,9 +60,11 @@ function AppContent() {
 function App() {
   return (
     <Router>
-      <DemoModalProvider>
-        <AppContent />
-      </DemoModalProvider>
+      <AnimationProvider>
+        <DemoModalProvider>
+          <AppContent />
+        </DemoModalProvider>
+      </AnimationProvider>
     </Router>
   );
 }

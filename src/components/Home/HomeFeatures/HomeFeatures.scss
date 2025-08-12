@@ -3,17 +3,32 @@
 .features-section {
   padding: 80px 0;
   background: $bg-secondary;
+
+  // Optimisations pour mobile
+  @media (max-width: 768px) {
+    padding: 60px 0;
+  }
 }
 
 .features-content {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 32px;
+
+  // Optimisations pour mobile
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
 }
 
 .features-header {
   text-align: center;
   margin-bottom: 64px;
+
+  // Optimisations pour mobile
+  @media (max-width: 768px) {
+    margin-bottom: 48px;
+  }
 }
 
 .features-title {
@@ -25,6 +40,8 @@
 
   @media (max-width: 768px) {
     font-size: 2rem;
+    // Optimisation pour les animations de texte sur mobile
+    background-attachment: scroll;
   }
 }
 
@@ -52,6 +69,11 @@
   @media (min-width: 1024px) {
     grid-template-columns: repeat(4, 1fr);
   }
+
+  // Optimisations pour mobile
+  @media (max-width: 768px) {
+    gap: 24px;
+  }
 }
 
 .feature-card {
@@ -63,6 +85,17 @@
     transform: translateY(-4px);
     border-color: $accent-primary;
     box-shadow: 0 8px 32px rgba(74, 144, 226, 0.3);
+  }
+
+  // Optimisations pour mobile
+  @media (max-width: 768px) {
+    transition: opacity 0.2s ease;
+    transform: translateZ(0);
+
+    &:hover {
+      transform: none;
+      box-shadow: inherit;
+    }
   }
 }
 
@@ -81,6 +114,17 @@
     height: 32px;
     color: $text-primary;
   }
+
+  // Optimisations pour mobile
+  @media (max-width: 768px) {
+    width: 56px;
+    height: 56px;
+
+    .icon {
+      width: 28px;
+      height: 28px;
+    }
+  }
 }
 
 .feature-title {
@@ -89,9 +133,21 @@
   margin-bottom: 16px;
   line-height: 1.2;
   color: $text-primary;
+
+  // Optimisations pour mobile
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+    // Optimisation pour les animations de texte sur mobile
+    background-attachment: scroll;
+  }
 }
 
 .feature-description {
   color: $text-muted;
   line-height: 1.6;
+
+  // Optimisations pour mobile
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+  }
 }

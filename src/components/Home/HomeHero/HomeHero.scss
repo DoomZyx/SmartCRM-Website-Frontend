@@ -43,6 +43,14 @@
   border-radius: 50%;
   opacity: 0.1;
   animation: float 6s ease-in-out infinite;
+  
+  // Optimisations pour mobile
+  @media (max-width: 768px) {
+    animation: none;
+    opacity: 0.05;
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .effect-2 {
@@ -55,6 +63,14 @@
   border-radius: 50%;
   opacity: 0.1;
   animation: float 8s ease-in-out infinite reverse;
+  
+  // Optimisations pour mobile
+  @media (max-width: 768px) {
+    animation: none;
+    opacity: 0.05;
+    width: 80px;
+    height: 80px;
+  }
 }
 
 @keyframes float {
@@ -75,11 +91,22 @@
   margin: 0 auto;
   padding: 0 32px;
   text-align: center;
+  
+  // Optimisations pour mobile
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
 }
 
 .hero-container {
   max-width: 64rem;
   margin: 0 auto;
+  
+  // Optimisations pour les animations sur mobile
+  @media (max-width: 768px) {
+    transform: translateZ(0);
+    will-change: auto;
+  }
 }
 
 .hero-title {
@@ -91,6 +118,8 @@
 
   @media (max-width: 768px) {
     font-size: 2.5rem;
+    // Optimisation pour les animations de texte sur mobile
+    background-attachment: scroll;
   }
 
   @media (max-width: 480px) {
@@ -123,6 +152,15 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    
+    // Optimisations pour mobile
+    @media (max-width: 768px) {
+      transition: opacity 0.2s ease;
+      
+      &:hover {
+        transform: none;
+      }
+    }
   }
 
   .icon {
@@ -144,6 +182,11 @@
 
 .stat-item {
   text-align: center;
+  
+  // Optimisations pour mobile
+  @media (max-width: 768px) {
+    transform: translateZ(0);
+  }
 }
 
 .stat-number {
@@ -154,6 +197,8 @@
 
   @media (max-width: 768px) {
     font-size: 1.5rem;
+    // Optimisation pour les animations de texte sur mobile
+    background-attachment: scroll;
   }
 }
 
