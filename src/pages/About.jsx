@@ -39,7 +39,6 @@ const About = () => {
         <SectionHeader
           title="Notre "
           gradientText="Équipe"
-          description="Une équipe passionnée d'experts dédiés à votre succès."
         />
         <div className="team-grid">
           {teamMembers.map((member, index) => (

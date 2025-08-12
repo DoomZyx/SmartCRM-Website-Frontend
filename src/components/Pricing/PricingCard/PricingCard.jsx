@@ -23,7 +23,7 @@ const PricingCard = ({ plan, delay = 0 }) => {
         </div>
       )}
 
-      {plan.name === "Business" && (
+      {plan.isNew && (
         <div className="new-badge">
           <div className="badge-content">
             <Sparkles className="icon" />
@@ -32,7 +32,7 @@ const PricingCard = ({ plan, delay = 0 }) => {
         </div>
       )}
 
-      {plan.name === "Enterprise" && (
+      {plan.isDevelopment && (
         <div className="development-badge">
           <div className="badge-content">
             <Clock className="icon" />
@@ -74,4 +74,4 @@ const PricingCard = ({ plan, delay = 0 }) => {
   );
 };
 
-export default PricingCard; 
+export default PricingCard;

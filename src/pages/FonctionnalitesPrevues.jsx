@@ -49,17 +49,6 @@ const FonctionnalitesPrevues = () => {
             et guides d'intégration détaillés pour faciliter l'implémentation.
           </p>
           
-          <h3>Gestion complète des contacts</h3>
-          <p>
-            L'IA pourra reconnaître un client lors d'un nouvel appel et récupérer automatiquement 
-            ses données et informations renseignées lors des appels précédents.
-          </p>
-          
-          <h3>Intégrations Calendly</h3>
-          <p>
-            Intégration directe avec Calendly pour la prise de rendez-vous automatique 
-            et la synchronisation des disponibilités.
-          </p>
           
           <h3>Intégrations Slack / Teams</h3>
           <p>
@@ -77,8 +66,6 @@ const FonctionnalitesPrevues = () => {
         <div className="legal-content">
           <h3>Automatisation avancée</h3>
           <ul>
-            <li>Création automatique de contacts depuis les appels</li>
-            <li>Envoi automatique d'emails de suivi</li>
             <li>Rappels et notifications intelligentes</li>
             <li>Qualification automatique des prospects</li>
           </ul>

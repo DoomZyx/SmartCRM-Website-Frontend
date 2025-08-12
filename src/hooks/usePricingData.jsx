@@ -15,6 +15,7 @@ export const usePricingData = () => {
       ],
       isNew: false,
       popular: true,
+      isDevelopment: false,
     },
     {
       name: "Business",
@@ -31,7 +32,8 @@ export const usePricingData = () => {
         "Application desktop + web",
       ],
       popular: false,
-      isNew: true,
+      isNew: false,
+      isDevelopment: true, // Ajout du booléen pour Business
     },
     {
       name: "Enterprise",
@@ -49,6 +51,7 @@ export const usePricingData = () => {
       ],
       popular: false,
       isNew: false,
+      isDevelopment: true, // Ajout du booléen pour Enterprise
     },
   ];
 
