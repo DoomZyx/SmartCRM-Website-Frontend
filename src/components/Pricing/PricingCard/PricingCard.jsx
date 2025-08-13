@@ -46,7 +46,7 @@ const PricingCard = ({ plan, delay = 0 }) => {
         <p className="pricing-description">{plan.description}</p>
 
         <div className="pricing-price">
-          <span className="price-amount">{plan.price}€</span>
+          <span className="price-amount">{plan.price}</span>
           <div className="maintenance-price">{plan.period}</div>
           <div className="API-price">{plan.API}</div>
         </div>
