@@ -2,8 +2,8 @@ export const usePricingData = () => {
   const plans = [
     {
       name: "Starter",
-      price: "21 600",
-      period: "+ 3 600€/an",
+      price: "2 100€/mois",
+      period: "Maintenance incluse",
       description: "Parfait pour les petites entreprises",
       API: "+ Frais API selon volume d'appels",
       features: [
@@ -19,8 +19,8 @@ export const usePricingData = () => {
     },
     {
       name: "Business",
-      price: "42 000",
-      period: "+ 6 000€/an",
+      price: "4 500€/mois",
+      period: "Maintenance incluse",
       API: "+ Frais API selon volume d'appels",
       description: "Idéal pour les équipes en croissance",
       features: [
@@ -37,8 +37,8 @@ export const usePricingData = () => {
     },
     {
       name: "Enterprise",
-      price: "66 000",
-      period: "+ 9 600€/an",
+      price: "6 300€/mois",
+      period: "Maintenance incluse",
       API: "+ Frais API selon volume d'appels",
       description: "Pour les grandes entreprises",
       features: [
