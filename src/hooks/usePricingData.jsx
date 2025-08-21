@@ -20,7 +20,7 @@ export const usePricingData = () => {
     },
     {
       name: "Semi-Pro",
-      price: "129/mois",
+      price: "129€/mois",
       period: "Maintenance incluse",
       API: "+ 0.22€/min HT",
       description: "Idéal pour les équipes en croissance",
