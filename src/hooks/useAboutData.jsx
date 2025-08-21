@@ -3,7 +3,7 @@ export const useAboutData = () => {
     title: "Notre ",
     gradientText: "Histoire",
     paragraphs: [
-      "SmartCRM est né d'une vision simple : démocratiser l'intelligence artificielle pour toutes les entreprises, quelle que soit leur taille. En 2025, le fondateur a constaté que les solutions CRM traditionnelles étaient trop complexes et coûteuses pour la plupart des PME.",
+      "mySmartCRM est né d'une vision simple : démocratiser l'intelligence artificielle pour toutes les entreprises, quelle que soit leur taille. En 2025, le fondateur a constaté que les solutions CRM traditionnelles étaient trop complexes et coûteuses pour la plupart des PME.",
       "Il a donc décidé de créer une plateforme qui combine la puissance d'un CRM moderne avec l'intelligence artificielle, le tout dans une interface intuitive et accessible. L'objectif ? Permettre à chaque entreprise de bénéficier des mêmes outils que les grandes corporations.",
     ],
     stats: [
@@ -39,23 +39,3 @@ export const useAboutData = () => {
 };
 
 
-
-   {/* {
-      name: "Marie Laurent",
-      role: "CTO",
-      description:
-        "Architecte logiciel de talent, Marie supervise le développement technique et assure la scalabilité de notre plateforme.",
-    },
-    {
-      name: "Thomas Moreau",
-      role: "Directeur Commercial",
-      description:
-        "Spécialiste du développement commercial, Thomas accompagne nos clients dans leur transformation digitale.",
-    },
-    {
-      name: "Sophie Martin",
-      role: "Directrice Marketing",
-      description:
-        "Experte en marketing digital, Sophie développe notre stratégie de croissance et notre présence en ligne.",
-    },
-    */}

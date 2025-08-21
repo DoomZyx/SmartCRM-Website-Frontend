@@ -37,7 +37,7 @@ const HomeHero = () => {
           </h1>
 
           <p className="hero-description">
-            SmartCRM combine la puissance d'un CRM moderne avec l'intelligence
+            mySmartCRM combine la puissance d'un CRM moderne avec l'intelligence
             artificielle pour transformer votre façon de gérer vos clients et
             prospects.
           </p>

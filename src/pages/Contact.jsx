@@ -23,7 +23,7 @@ const Contact = () => {
     <PageContainer>
       <Hero
         title="Contactez "
-        gradientText="SmartCRM"
+        gradientText="mySmartCRM"
         description="Notre équipe est là pour vous accompagner. N'hésitez pas à nous contacter pour toute question ou demande de démonstration."
       />
 

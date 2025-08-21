@@ -7,14 +7,14 @@ const MentionsLegales = () => {
       <Hero
         title="Mentions "
         gradientText="Légales"
-        description="Informations légales et conditions d'utilisation de SmartCRM"
+        description="Informations légales et conditions d'utilisation de mySmartCRM"
       />
 
       <Section>
         <div className="legal-content">
           <h3>Éditeur du site</h3>
           <p>
-            <strong>SmartCRM</strong>
+            <strong>mySmartCRM</strong>
             <br />
             Adresse : 125 rue de la République, 57240 Knutange France
             <br />
@@ -95,7 +95,7 @@ const MentionsLegales = () => {
             <br />
             <strong>Téléphone</strong> : +33 7 49 34 55 10
             <br />
-            <strong>Adresse</strong> : SmartCRM, Knutange, France
+            <strong>Adresse</strong> : mySmartCRM, Knutange, France
           </p>
 
           <p>

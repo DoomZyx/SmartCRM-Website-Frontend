@@ -10,31 +10,6 @@ const ServiceCRMIntegre = () => {
         description="CRM Analytics complet avec base de données MongoDB. Gestion des appels, suivi client et métriques de performance en temps réel."
       />
 
-      <Section>
-        <SectionHeader
-          title="Base de données MongoDB"
-          description="Stockage et gestion des données client"
-        />
-        <div className="legal-content">
-          <h3>Modèles de données optimisés</h3>
-          <p>Structure de données MongoDB optimisée pour la gestion des appels et des clients avec indexation automatique et requêtes performantes.</p>
-          
-          <h3>Gestion des utilisateurs</h3>
-          <ul>
-            <li>Authentification sécurisée avec JWT</li>
-            <li>Gestion des rôles (admin/user)</li>
-            <li>Profils utilisateur personnalisables</li>
-            <li>Historique des connexions</li>
-          </ul>
-          
-          <h3>Données d'appels structurées</h3>
-          <p>Stockage optimisé des données d'appels avec métadonnées complètes : durée, statut, numéro, contenu analysé par GPT.</p>
-          
-          <h3>Base de données clients</h3>
-          <p>Base de données centralisée pour tous vos contacts avec historique complet des interactions et données enrichies par l'IA.</p>
-        </div>
-      </Section>
-
       <Section variant="alt">
         <SectionHeader
           title="Analytics et métriques"

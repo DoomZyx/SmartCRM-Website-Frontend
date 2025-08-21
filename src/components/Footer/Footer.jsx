@@ -14,7 +14,7 @@ const Footer = () => {
         <motion.div {...animationProps} className="footer-content">
           <div className="footer-section">
             <div className="footer-logo">
-              <h3>SmartCRM</h3>
+              <h3>mySmartCRM</h3>
               <p>Transformez votre gestion client avec l'IA</p>
             </div>
             <div className="footer-social">

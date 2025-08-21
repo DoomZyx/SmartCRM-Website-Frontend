@@ -8,7 +8,7 @@ const Logo = () => {
       <div className="logo-icon">
         <span>S</span>
       </div>
-      <span className="logo-text">SmartCRM</span>
+      <span className="logo-text">mySmartCRM</span>
     </Link>
   );
 };

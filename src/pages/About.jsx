@@ -22,7 +22,7 @@ const About = () => {
     <PageContainer>
       <Hero
         title="À propos de "
-        gradientText="SmartCRM"
+        gradientText="mySmartCRM"
         description="Découvrez l'histoire, l'équipe et la mission qui font de SmartCRM le partenaire de confiance pour votre transformation digitale."
       />
 

@@ -42,7 +42,7 @@ const HomeFeatures = () => {
             Une solution <span className="text-gradient">complète</span>
           </h2>
           <p className="features-description">
-            Découvrez comment SmartCRM peut transformer votre entreprise avec
+            Découvrez comment mySmartCRM peut transformer votre entreprise avec
             des outils puissants et une IA conversationnelle de pointe.
           </p>
         </motion.div>

@@ -106,7 +106,7 @@ const PolitiqueConfidentialite = () => {
           <ul>
             <li><strong>Email</strong> : contact.smartcrm@gmail.com</li>
             <li><strong>Téléphone</strong> : +33 7 49 34 55 10</li>
-            <li><strong>Adresse</strong> : SmartCRM, Knutange, France</li>
+            <li><strong>Adresse</strong> : mySmartCRM, Knutange, France</li>
           </ul>
           <p>
             Vous pouvez également contacter la CNIL (Commission Nationale de l'Informatique et des Libertés) si vous estimez que vos droits ne sont pas respectés.

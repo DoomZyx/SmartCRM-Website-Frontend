@@ -16,29 +16,29 @@ const ServiceIntegrationsAPI = () => {
           description="Prix transparents et prévisibles"
         />
         <div className="legal-content">
-          <h3>Prix de base</h3>
-          <div className="feature-highlight">
-            <h4>Exemple concret : Appel de 6 minutes</h4>
-            <p>
-              Un appel téléphonique de 6 minutes avec conseils et prise de rendez-vous 
-              coûte <strong>0,86€</strong> (tarif particulier).
-            </p>
-          </div>
-          
+
           <h3>Facteurs de coût</h3>
           <ul>
-            <li><strong>Durée de l'appel</strong> : Facturation à la minute</li>
-            <li><strong>Utilisation de l'IA</strong> : Analyse GPT en temps réel</li>
-            <li><strong>Stockage des données</strong> : Sauvegarde dans MongoDB</li>
-            <li><strong>Infrastructure</strong> : Serveurs et maintenance</li>
+            <li>
+              <strong>Durée de l'appel</strong> : Facturation à la minute
+            </li>
+            <li>
+              <strong>Utilisation de l'IA</strong> : Analyse GPT en temps réel
+            </li>
+            <li>
+              <strong>Stockage des données</strong> : Sauvegarde dans MongoDB
+            </li>
+            <li>
+              <strong>Infrastructure</strong> : Serveurs et maintenance
+            </li>
           </ul>
-          
+
           <h3>Tarifs commerciaux</h3>
           <p>
-            Les tarifs commerciaux pour les entreprises seront définis selon le volume 
-            d'appels et les fonctionnalités spécifiques requises.
+            Les tarifs commerciaux pour les entreprises seront définis selon le
+            volume d'appels et les fonctionnalités spécifiques requises.
           </p>
-          
+
           <h3>Optimisation des coûts</h3>
           <ul>
             <li>Appels ciblés et qualifiés</li>
@@ -49,7 +49,7 @@ const ServiceIntegrationsAPI = () => {
         </div>
       </Section>
 
-      <Section>
+      {/* <Section>
         <SectionHeader
           title="API REST complète"
           description="Services API intégrés et endpoints disponibles"
@@ -70,7 +70,7 @@ const ServiceIntegrationsAPI = () => {
           <h3>Authentification sécurisée</h3>
           <p>Système d'authentification JWT avec gestion des tokens, permissions granulaires et sécurité renforcée pour protéger vos données.</p>
         </div>
-      </Section>
+      </Section> */}
 
       <Section variant="alt">
         <SectionHeader
@@ -79,8 +79,11 @@ const ServiceIntegrationsAPI = () => {
         />
         <div className="legal-content">
           <h3>Monitoring en temps réel</h3>
-          <p>Surveillance continue des performances de l'API avec alertes automatiques en cas de problème ou de dégradation des performances.</p>
-          
+          <p>
+            Surveillance continue des performances de l'API avec alertes
+            automatiques en cas de problème ou de dégradation des performances.
+          </p>
+
           <h3>Métriques de performance</h3>
           <ul>
             <li>Temps de réponse des endpoints</li>
@@ -88,12 +91,18 @@ const ServiceIntegrationsAPI = () => {
             <li>Utilisation des ressources</li>
             <li>Nombre de requêtes par minute</li>
           </ul>
-          
+
           <h3>Limites de taux</h3>
-          <p>Système de rate limiting configurable pour éviter la surcharge et assurer une performance optimale pour tous les utilisateurs.</p>
-          
+          <p>
+            Système de rate limiting configurable pour éviter la surcharge et
+            assurer une performance optimale pour tous les utilisateurs.
+          </p>
+
           <h3>Logs et historique</h3>
-          <p>Journalisation complète de toutes les requêtes API avec horodatage, utilisateur et détails de la requête pour le debugging et l'audit.</p>
+          <p>
+            Journalisation complète de toutes les requêtes API avec horodatage,
+            utilisateur et détails de la requête pour le debugging et l'audit.
+          </p>
         </div>
       </Section>
 
@@ -104,8 +113,11 @@ const ServiceIntegrationsAPI = () => {
         />
         <div className="legal-content">
           <h3>Tests API automatisés</h3>
-          <p>Suite de tests automatisés pour valider le bon fonctionnement de tous les endpoints et détecter les régressions automatiquement.</p>
-          
+          <p>
+            Suite de tests automatisés pour valider le bon fonctionnement de
+            tous les endpoints et détecter les régressions automatiquement.
+          </p>
+
           <h3>Configuration avancée</h3>
           <ul>
             <li>Paramètres de sécurité personnalisables</li>
@@ -113,17 +125,17 @@ const ServiceIntegrationsAPI = () => {
             <li>Gestion des environnements (dev, staging, prod)</li>
             <li>Paramètres de performance</li>
           </ul>
-          
+
           <h3>Sécurité et validation</h3>
-          <p>Validation stricte des données d'entrée, protection contre les injections, et conformité aux standards de sécurité les plus élevés.</p>
-          
-          <h3>Documentation technique</h3>
-          <p>Documentation complète de l'API avec exemples de code, spécifications OpenAPI et guides d'intégration pour faciliter l'implémentation.</p>
+          <p>
+            Validation stricte des données d'entrée, protection contre les
+            injections, et conformité aux standards de sécurité les plus élevés.
+          </p>
         </div>
       </Section>
 
       <CTASection
-        title="Intégrez SmartCRM à vos "
+        title="Intégrez mySmartCRM à vos "
         gradientText="outils"
         description="Découvrez comment notre API REST peut s'intégrer à votre écosystème existant et automatiser vos processus métier."
         primaryButton="Demander une démonstration"
