@@ -15,7 +15,7 @@ const Footer = () => {
           <div className="footer-section">
             <div className="footer-logo">
               <h3>mySmartCRM</h3>
-              <p>Transformez votre gestion client avec l'IA</p>
+              <p>L'accueil téléphonique des restaurateurs, 24/7, par l'IA</p>
             </div>
             <div className="footer-social">
               <a href="#" className="social-link">
@@ -61,12 +61,6 @@ const Footer = () => {
             <ul className="footer-links">
               <li>
                 <Link to="/service-ia-telephonique">IA Téléphonique</Link>
-              </li>
-              <li>
-                <Link to="/service-crm-integre">CRM Intégré</Link>
-              </li>
-              <li>
-                <Link to="/service-integrations-api">Intégrations API</Link>
               </li>
             </ul>
           </div>

@@ -1,89 +1,85 @@
 import React from "react";
 import {
-  Users,
+  Phone,
   MessageCircle,
   BarChart3,
-  Zap,
+  UtensilsCrossed,
   Shield,
   Smartphone,
-  Globe,
-  Database,
+  ClipboardList,
   Bot,
-  Target,
+  Clock,
   TrendingUp,
-  Settings,
+  Heart,
 } from "lucide-react";
 
 export const useServicesData = () => {
   const crmFeatures = [
     {
-      icon: <Users className="icon" />,
-      title: "Gestion des Contacts",
+      icon: <UtensilsCrossed className="icon" />,
+      title: "Carte et menus à votre image",
       description:
-        "Centralisez tous vos contacts clients et prospects dans une base de données unifiée.",
+        "Personnalisez votre carte : composition des sandwichs, plats, suppléments. L'IA a accès à tout pour répondre précisément aux clients.",
     },
     {
-      icon: <Target className="icon" />,
-      title: "Suivi des Opportunités",
+      icon: <ClipboardList className="icon" />,
+      title: "Réservations et commandes",
       description:
-        "Suivez chaque opportunité de vente avec des pipelines personnalisables.",
+        "Prise de réservations et commandes via l'interface web. Tout centralisé.",
     },
     {
-      icon: <TrendingUp className="icon" />,
-      title: "Analytics Avancés",
+      icon: <BarChart3 className="icon" />,
+      title: "CA générée par l'assistant",
       description:
-        "Analysez vos performances avec des tableaux de bord en temps réel.",
-    },
-    {
-      icon: <Settings className="icon" />,
-      title: "Automatisation des Tâches",
-      description:
-        "Automatisez vos processus de vente et marketing pour gagner du temps.",
+        "Suivez les réservations et les commandes prises automatiquement par l'assistant vocal intelligent.",
     },
   ];
 
   const aiFeatures = [
     {
+      icon: <Phone className="icon" />,
+      title: "Accueil téléphonique 24/7",
+      description:
+        "Plus d'appels manqués. L'IA répond à chaque appel, même en coup de feu.",
+    },
+    {
       icon: <Bot className="icon" />,
-      title: "Chatbot IA Multilingue",
+      title: "IA entraînée restauration",
       description:
-        "Chatbot intelligent capable de converser dans plusieurs langues.",
+        "Pas un outil générique : l'IA comprend les besoins et contraintes des restaurateurs (horaires, capacité, imprévus).",
     },
     {
-      icon: <MessageCircle className="icon" />,
-      title: "Support 24/7",
+      icon: <Heart className="icon" />,
+      title: "Gestion des imprévus",
       description:
-        "Répondez à vos clients à toute heure avec notre IA conversationnelle.",
-    },
-    {
-      icon: <Database className="icon" />,
-      title: "Apprentissage Continu",
-      description:
-        "Le chatbot s'améliore constamment grâce au machine learning.",
+        "Chaise haute, accueil des personnes en mobilité réduite. L'IA gère les demandes du quotidien.",
     },
     {
       icon: <Shield className="icon" />,
-      title: "Sécurité Avancée",
-      description: "Protection des données et conformité RGPD garanties.",
+      title: "Disponibilité et fiabilité",
+      description:
+        "Solution dédiée avec disponibilité 24/7. Réduisez le stress et ne perdez plus de CA sur les appels.",
     },
   ];
 
   const integrations = [
     {
-      icon: <Globe className="icon" />,
-      title: "Intégrations Web",
-      description: "Intégration facile sur votre site web et réseaux sociaux.",
-    },
-    {
       icon: <Smartphone className="icon" />,
-      title: "Application Mobile",
+      title: "Application web",
       description:
-        "Accédez à votre CRM depuis n'importe où avec notre app mobile.",
+        "Interface et architecture conçues pour personnaliser la carte et piloter l'assistant vocal.",
     },
     {
-      icon: <Zap className="icon" />,
-      title: "API Ouverte",
-      description: "Connectez SmartCRM à vos outils existants via notre API.",
+      icon: <Clock className="icon" />,
+      title: "Abonnement mensuel",
+      description:
+        "Minutes d'appel incluses par mois. Formule d'essai à petit budget pour tester sans s'engager.",
+    },
+    {
+      icon: <TrendingUp className="icon" />,
+      title: "Différenciation concurrents",
+      description:
+        "Contrairement à ElevenLabs, Ringover ou Vapi, une solution spécialisée restauration, pas générique.",
     },
   ];
 

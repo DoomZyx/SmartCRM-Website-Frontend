@@ -17,15 +17,16 @@ const HomeCTA = () => {
         >
           <div className="cta-card">
             <h2 className="cta-title">
-              Prêt à transformer votre{" "}
-              <span className="text-gradient">business</span> ?
+              Prêt à ne plus perdre{" "}
+              <span className="text-gradient">un seul appel</span> ?
             </h2>
             <p className="cta-description">
-            Optimisez vos coûts et votre efficacité
+              Testez avec un abonnement à petit budget (dès 60€/mois) et
+              récupérez le CA perdu grâce à l'accueil 24/7.
             </p>
             <div className="cta-buttons">
               <button className="btn btn-primary" onClick={openDemoModal}>
-                Demander une démonstation
+                Demander une démonstration
               </button>
               <button className="btn btn-secondary" onClick={openDemoModal}>
                 Parler à un expert

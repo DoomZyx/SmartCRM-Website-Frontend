@@ -8,9 +8,9 @@ const HomeHero = () => {
   const { openDemoModal } = useDemoModal();
 
   const stats = [
-    { number: "100%", label: "Satisfaction client" },
-    { number: "99.9%", label: "Temps de disponibilité" },
-    { number: "24/7", label: "Support client" },
+    { number: "24/7", label: "Accueil téléphonique" },
+    { number: "0", label: "Appel manqué" },
+    { number: "100%", label: "IA spécialisée restauration" },
   ];
 
   return (
@@ -32,19 +32,20 @@ const HomeHero = () => {
           className="hero-container"
         >
           <h1 className="hero-title">
-            Révolutionnez votre
-            <span className="text-gradient"> relation client</span>
+            Révolutionnez l'accueil téléphonique
+            <span className="text-gradient"> de votre restaurant</span>
           </h1>
 
           <p className="hero-description">
-            mySmartCRM combine la puissance d'un CRM moderne avec l'intelligence
-            artificielle pour transformer votre façon de gérer vos clients et
-            prospects.
+            Récupérez le chiffre d'affaires perdu à cause des appels manqués.
+            Une IA conversationnelle branchée sur une application web, disponible
+            24h/24 et 7j/7, conçue pour les restaurateurs et la restauration
+            rapide.
           </p>
 
           <div className="hero-cta">
             <button className="btn btn-primary" onClick={openDemoModal}>
-              Demander une démonstation
+              Demander une démonstration
               <ArrowRight className="icon" />
             </button>
           </div>

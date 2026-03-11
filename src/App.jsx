@@ -14,8 +14,6 @@ import Contact from "./pages/Contact";
 import MentionsLegales from "./pages/MentionsLegales";
 import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
 import ServiceIATelephonique from "./pages/ServiceIATelephonique";
-import ServiceCRMIntegre from "./pages/ServiceCRMIntegre";
-import ServiceIntegrationsAPI from "./pages/ServiceIntegrationsAPI";
 import FonctionnalitesPrevues from "./pages/FonctionnalitesPrevues";
 
 function AppContent() {
@@ -39,11 +37,6 @@ function AppContent() {
         <Route
           path="/service-ia-telephonique"
           element={<ServiceIATelephonique />}
-        />
-        <Route path="/service-crm-integre" element={<ServiceCRMIntegre />} />
-        <Route
-          path="/service-integrations-api"
-          element={<ServiceIntegrationsAPI />}
         />
         <Route
           path="/fonctionnalites-prevues"

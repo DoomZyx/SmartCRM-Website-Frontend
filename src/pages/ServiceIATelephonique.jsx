@@ -5,84 +5,69 @@ const ServiceIATelephonique = () => {
   return (
     <PageContainer className="service-page">
       <Hero
-        title="IA "
-        gradientText="Téléphonique"
-        description="Intelligence artificielle pour automatiser vos appels téléphoniques. Analyse intelligente avec GPT et gestion complète avec Twilio."
+        title="IA téléphonique "
+        gradientText="pour la restauration"
+        description="Révolutionnez l'accueil téléphonique de votre restaurant. Une IA conversationnelle branchée sur une application web, 24/7, pour récupérer le CA perdu des appels manqués."
       />
 
       <Section>
         <SectionHeader
-          title="Gestion des appels avec Twilio"
-          description="Automatisation et suivi des appels téléphoniques"
+          title="Plus d'appels manqués"
+          description="Disponibilité 24h/24 et 7j/7 pour ne plus perdre une commande ou une réservation"
         />
         <div className="legal-content">
-          <h3>Appels téléphoniques automatisés</h3>
-          <p>Intégration complète avec Twilio pour automatiser vos appels sortants et gérer les appels entrants avec une qualité professionnelle.</p>
-          
-          <h3>Suivi en temps réel</h3>
+          <h3>Accueil téléphonique assuré en permanence</h3>
+          <p>En coup de feu ou en dehors des heures d'ouverture, l'IA répond à chaque appel. Plus besoin de décrocher entre deux plats : l'assistant vocal prend les commandes et les réservations à votre place.</p>
+
+          <h3>Solution dédiée aux restaurateurs</h3>
           <ul>
-            <li>Statut des appels en direct</li>
-            <li>Durée et qualité de connexion</li>
-            <li>Gestion des tentatives d'appel</li>
-            <li>Historique complet des communications</li>
+            <li>IA entraînée sur le cas d'usage des restaurants</li>
+            <li>Compréhension des besoins et contraintes du métier</li>
+            <li>Ce que les outils génériques (ElevenLabs, Ringover, Vapi) ne proposent pas</li>
           </ul>
-          
-          <h3>Gestion des statuts d'appel</h3>
-          <p>Système de statuts avancé : Nouveau, En cours, Terminé, Annulé, avec possibilité de transfert vers un humain si nécessaire.</p>
         </div>
       </Section>
 
       <Section variant="alt">
         <SectionHeader
-          title="Analyse intelligente avec GPT"
-          description="Traitement du langage naturel et extraction de données"
+          title="Carte et menus personnalisables"
+          description="L'IA a accès à votre carte pour répondre avec précision"
         />
         <div className="legal-content">
-          <h3>Analyse du contenu des appels</h3>
-          <p>Analyse automatique du contenu des conversations avec GPT pour extraire les informations clés et qualifier les prospects.</p>
-          
-          <h3>Traitement du langage naturel</h3>
+          <h3>Interface pensée pour la restauration</h3>
+          <p>L'architecture et l'interface sont conçues pour personnaliser au maximum la carte : composition des sandwichs, plats, suppléments. L'assistant vocal connaît vos menus et peut renseigner les clients comme un membre de l'équipe.</p>
+
+          <h3>Réservations et commandes</h3>
           <ul>
-            <li>Compréhension du contexte de la conversation</li>
-            <li>Détection de l'intention du client</li>
-            <li>Analyse du sentiment et de la satisfaction</li>
-            <li>Identification des points d'intérêt</li>
+            <li>Prise de réservations via l'IA ou manuellement dans l'interface</li>
+            <li>Commandes enregistrées dans l'interface</li>
+            <li>Gestion des imprévus du quotidien : chaise haute, accueil des personnes en mobilité réduite</li>
           </ul>
-          
-          <h3>Qualification automatique</h3>
-          <p>Qualification automatique des prospects basée sur le contenu de la conversation et les réponses données.</p>
-          
-          <h3>Extraction de données</h3>
-          <p>Extraction automatique des informations importantes : coordonnées, besoins, budget, délais, etc.</p>
         </div>
       </Section>
 
       <Section>
         <SectionHeader
-          title="Interface d'administration"
-          description="Gestion et monitoring de vos appels"
+          title="CA générée et abonnement mensuel"
+          description="Mesurez l'impact et testez à moindre coût"
         />
         <div className="legal-content">
-          <h3>Authentification sécurisée</h3>
-          <p>Système d'authentification JWT avec gestion des rôles et permissions pour sécuriser l'accès à l'interface d'administration.</p>
-          
-          <h3>Monitoring système</h3>
+          <h3>Chiffre d'affaires généré par l'assistant</h3>
+          <p>Le tableau de bord calcule le CA généré par l'assistant vocal intelligent (commandes et réservations prises). Vous visualisez concrètement le retour sur investissement.</p>
+
+          <h3>Abonnement avec minutes incluses</h3>
           <ul>
-            <li>Tableau de bord en temps réel</li>
-            <li>Statistiques d'appels détaillées</li>
-            <li>Alertes et notifications</li>
-            <li>Gestion des erreurs et incidents</li>
+            <li>Durée d'appel limitée dans le mois selon la formule choisie</li>
+            <li>Formule d'essai à petit budget (dès 60€/mois) pour tester sans s'engager</li>
+            <li>Plusieurs paliers selon votre volume d'appels</li>
           </ul>
-          
-          <h3>Export des données</h3>
-          <p>Export des données d'appels et analyses dans différents formats pour intégration avec vos outils existants.</p>
         </div>
       </Section>
 
       <CTASection
-        title="Automatisez vos "
-        gradientText="appels téléphoniques"
-        description="Découvrez comment notre IA téléphonique peut transformer votre processus de vente et améliorer votre productivité."
+        title="Récupérez le CA "
+        gradientText="des appels manqués"
+        description="Demandez une démonstration et découvrez comment l'IA téléphonique peut transformer l'accueil de votre restaurant."
         primaryButton="Demander une démonstration"
         secondaryButton="Parler à un expert"
       />
@@ -90,4 +75,4 @@ const ServiceIATelephonique = () => {
   );
 };
 
-export default ServiceIATelephonique; 
+export default ServiceIATelephonique;

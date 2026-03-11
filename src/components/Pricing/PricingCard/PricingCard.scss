@@ -85,9 +85,16 @@
   margin-bottom: 24px;
 }
 
-.API-price {
+.API-price,
+.pricing-minutes,
+.pricing-calls {
   color: $text-muted;
   font-size: 0.875rem;
+}
+
+.price-suffix {
+  font-size: 1.125rem;
+  font-weight: 600;
 }
 
 .price-amount {
@@ -100,8 +107,23 @@
   color: $text-muted;
 }
 
+.pricing-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pricing-checkout-error {
+  font-size: 0.875rem;
+  color: $accent-secondary;
+  margin: 0;
+}
+
 .pricing-btn {
   width: 100%;
+  text-decoration: none;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .pricing-features {

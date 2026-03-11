@@ -7,28 +7,22 @@ import "./HomeFeatures.scss";
 const HomeFeatures = () => {
   const features = [
     {
-      icon: <Users className="icon" />,
-      title: "Gestion CRM Avancée",
-      description:
-        "Gérez vos clients, prospects et opportunités avec une interface intuitive et puissante.",
-    },
-    {
       icon: <MessageCircle className="icon" />,
-      title: "Chatbot AI Intelligent",
+      title: "Plus d'appels manqués",
       description:
-        "Automatisez vos conversations client avec notre IA conversationnelle de pointe.",
+        "Accueil téléphonique 24/7. L'IA répond à chaque appel et ne laisse plus passer une commande ou une réservation.",
     },
     {
-      icon: <BarChart3 className="icon" />,
-      title: "Analytics en Temps Réel",
+      icon: <Users className="icon" />,
+      title: "Carte et menus personnalisables",
       description:
-        "Suivez vos performances et prenez des décisions éclairées avec nos tableaux de bord.",
+        "Interface pensée pour la restauration : composition des sandwichs, plats, suppléments. L'IA a accès à votre carte pour répondre avec précision.",
     },
     {
       icon: <Zap className="icon" />,
-      title: "Automatisation Complète",
+      title: "Réservations, commandes et imprévus",
       description:
-        "Automatisez vos processus de vente et marketing pour maximiser votre productivité.",
+        "Prise de réservations et commandes via l'interface. Gestion des imprévus : chaise haute, accueil PMR.",
     },
   ];
 
@@ -39,11 +33,12 @@ const HomeFeatures = () => {
       <div className="features-content">
         <motion.div {...headerAnimation} className="features-header">
           <h2 className="features-title">
-            Une solution <span className="text-gradient">complète</span>
+            Une solution <span className="text-gradient">pensée pour la restauration</span>
           </h2>
           <p className="features-description">
-            Découvrez comment mySmartCRM peut transformer votre entreprise avec
-            des outils puissants et une IA conversationnelle de pointe.
+            Comprendre les besoins et contraintes des restaurateurs, ce que les
+            outils génériques (ElevenLabs, Ringover, Vapi) ne font pas. Une IA
+            entraînée sur le cas d'usage des restaurants.
           </p>
         </motion.div>
 

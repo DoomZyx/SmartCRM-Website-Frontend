@@ -7,107 +7,31 @@ const FonctionnalitesPrevues = () => {
       <Hero
         title="Fonctionnalités "
         gradientText="Prévues"
-        description="Découvrez les fonctionnalités que nous développons pour faire évoluer SmartCRM selon vos besoins"
+        description="Découvrez les évolutions prévues pour la version 2 de l'assistant vocal dédié aux restaurateurs."
       />
 
       <Section>
         <SectionHeader
-          title="Notre approche de développement"
-          description="Développement itératif et transparent"
+          title="Prévu pour la V2"
+          description="Fonctionnalités planifiées pour la prochaine version"
         />
         <div className="legal-content">
-          <h3>Développement itératif</h3>
+          <h3>Analytics</h3>
           <p>
-            Nous développons SmartCRM de manière itérative, en ajoutant progressivement les fonctionnalités 
-            les plus demandées par nos clients. Cette approche nous permet de rester agile et de répondre 
-            rapidement aux besoins du marché.
+            Tableaux de bord et statistiques détaillées pour suivre l'activité des appels,
+            les tendances et les performances de l'assistant vocal.
           </p>
-          
-          <h3>Transparence totale</h3>
-          <p>
-            Nous croyons en la transparence. Cette page vous présente toutes les fonctionnalités que nous 
-            prévoyons d'ajouter, avec une estimation réaliste des délais et des priorités.
-          </p>
-          
-          <h3>Feedback client</h3>
-          <p>
-            Vos retours et suggestions influencent directement notre roadmap de développement. 
-            Nous écoutons nos clients pour prioriser les fonctionnalités qui apportent le plus de valeur.
-          </p>
-        </div>
-      </Section>
 
-      <Section variant="alt">
-        <SectionHeader
-          title="Fonctionnalités en développement"
-          description="Fonctionnalités actuellement en cours de développement"
-        />
-        <div className="legal-content">
-          <h3>API documentée</h3>
+          <h3>Livraison</h3>
           <p>
-            Documentation complète de l'API REST avec exemples de code, spécifications OpenAPI 
-            et guides d'intégration détaillés pour faciliter l'implémentation.
+            Prise en charge des commandes en livraison : gestion des adresses, créneaux
+            et suivi des commandes à livrer.
           </p>
-          
-          
-          <h3>Intégrations Slack / Teams</h3>
-          <p>
-            Notifications et alertes automatiques dans vos outils de communication 
-            d'équipe pour un suivi en temps réel.
-          </p>
-        </div>
-      </Section>
 
-      <Section>
-        <SectionHeader
-          title="Fonctionnalités prévues"
-          description="Fonctionnalités planifiées pour les prochaines versions"
-        />
-        <div className="legal-content">
-          <h3>Automatisation avancée</h3>
-          <ul>
-            <li>Rappels et notifications intelligentes</li>
-            <li>Qualification automatique des prospects</li>
-          </ul>
-          
-          <h3>Intégrations CRM</h3>
+          <h3>Calcul du chiffre d'affaires</h3>
           <p>
-            Intégrations avec les CRM populaires comme Salesforce et HubSpot 
-            pour synchroniser automatiquement les données clients.
-          </p>
-          
-          <h3>Fonctionnalités avancées</h3>
-          <ul>
-            <li>Analytics prédictifs et insights avancés</li>
-            <li>Tableaux de bord personnalisables</li>
-            <li>Workflows automatisés complexes</li>
-            <li>Rapports avancés et exports personnalisés</li>
-          </ul>
-        </div>
-      </Section>
-
-      <Section variant="alt">
-        <SectionHeader
-          title="Important à noter"
-          description="Informations importantes sur notre développement"
-        />
-        <div className="legal-content">
-          <h3>Évolution progressive</h3>
-          <p>
-            Ces fonctionnalités seront ajoutées progressivement à mesure que notre entreprise évolue. 
-            Les délais peuvent varier selon les priorités business et les retours clients.
-          </p>
-          
-          <h3>Priorités flexibles</h3>
-          <p>
-            L'ordre de développement peut être modifié en fonction des demandes clients 
-            et des opportunités du marché. Nous restons flexibles pour répondre aux besoins.
-          </p>
-          
-          <h3>Communication transparente</h3>
-          <p>
-            Nous vous tiendrons informés des avancées et des modifications de la roadmap 
-            via notre newsletter et les mises à jour du produit.
+            Calcul et suivi du CA généré par l'assistant vocal (commandes et réservations
+            prises via l'IA) pour mesurer l'impact sur votre activité.
           </p>
         </div>
       </Section>
@@ -115,7 +39,7 @@ const FonctionnalitesPrevues = () => {
       <CTASection
         title="Participez à l'évolution de "
         gradientText="mySmartCRM"
-        description="Votre feedback est précieux ! Partagez vos suggestions et participez à façonner l'avenir de SmartCRM."
+        description="Votre feedback est précieux. Partagez vos suggestions pour les prochaines versions."
         primaryButton="Demander une démonstration"
         secondaryButton="Parler à un expert"
       />
@@ -123,4 +47,4 @@ const FonctionnalitesPrevues = () => {
   );
 };
 
-export default FonctionnalitesPrevues; 
+export default FonctionnalitesPrevues;

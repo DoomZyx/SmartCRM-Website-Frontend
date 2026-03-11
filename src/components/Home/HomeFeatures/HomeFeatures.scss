@@ -57,20 +57,20 @@
   }
 }
 
-.features-grid {
+.features-section .features-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 360px);
   gap: 32px;
+  justify-content: center;
 
   @media (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(260px, 360px));
   }
 
   @media (min-width: 1024px) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, minmax(240px, 320px));
   }
 
-  // Optimisations pour mobile
   @media (max-width: 768px) {
     gap: 24px;
   }

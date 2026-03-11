@@ -3,11 +3,17 @@ import { motion } from "framer-motion";
 import { Check, Star, Sparkles, Clock } from "lucide-react";
 import { useDemoModal } from "../../../contexts/DemoModalContext";
 import { useOptimizedAnimation } from "../../../hooks/useOptimizedAnimation";
+import { useCheckout } from "../../../hooks/useCheckout";
 import "./PricingCard.scss";
 
 const PricingCard = ({ plan, delay = 0 }) => {
   const animationProps = useOptimizedAnimation(delay, "fadeUp");
   const { openDemoModal } = useDemoModal();
+  const { createCheckoutSession, isLoading, error } = useCheckout();
+
+  const handleCheckout = () => {
+    createCheckoutSession(plan.id);
+  };
 
   return (
     <motion.div
@@ -46,19 +52,48 @@ const PricingCard = ({ plan, delay = 0 }) => {
         <p className="pricing-description">{plan.description}</p>
 
         <div className="pricing-price">
-          <span className="price-amount">{plan.price}</span>
-          <div className="maintenance-price">{plan.period}</div>
-          <div className="API-price">{plan.API}</div>
+          <span className="price-amount">
+            {plan.price}
+            {plan.priceSuffix != null && (
+              <span className="price-suffix">{plan.priceSuffix}</span>
+            )}
+          </span>
+          {plan.period && (
+            <div className="maintenance-price">{plan.period}</div>
+          )}
+          {plan.minutes != null && (
+            <>
+              <div className="pricing-minutes">{plan.minutes} min / mois</div>
+              <div className="pricing-calls">
+                ~{plan.callsCount} appels (3 min)
+              </div>
+            </>
+          )}
+          {plan.API && <div className="API-price">{plan.API}</div>}
         </div>
 
-        <button
-          onClick={openDemoModal}
-          className={`btn pricing-btn ${
-            plan.popular ? "btn-primary" : "btn-secondary"
-          }`}
-        >
-          Demander une démonstration
-        </button>
+        <div className="pricing-actions">
+          <button
+            type="button"
+            className="btn pricing-btn btn-primary"
+            onClick={handleCheckout}
+            disabled={isLoading}
+          >
+            {isLoading ? "Redirection..." : "Acheter"}
+          </button>
+          {error && (
+            <p className="pricing-checkout-error" role="alert">
+              {error}
+            </p>
+          )}
+          <button
+            type="button"
+            onClick={openDemoModal}
+            className="btn pricing-btn btn-secondary"
+          >
+            Demander une démonstration
+          </button>
+        </div>
       </div>
 
       <div className="pricing-features">

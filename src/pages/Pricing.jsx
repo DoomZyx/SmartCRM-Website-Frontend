@@ -22,38 +22,39 @@ const Pricing = () => {
     <PageContainer>
       <Hero
         title="Tarifs "
-        gradientText="Transparents"
-        description="Choisissez le plan qui correspond le mieux à vos besoins. Tous nos plans incluent une démonstration gratuite."
+        gradientText="transparents"
+        description="Abonnement mensuel avec minutes d'appel incluses. Testez avec L'Echauffement dès 60€/mois, ou choisissez le volume adapté à votre activité."
       />
 
       <Section variant="alt">
         <PricingGrid plans={plans} />
       </Section>
 
-      <Section>
-        <SectionHeader
-          title="Modules "
-          gradientText="Complémentaires"
-          description="Personnalisez votre expérience avec nos modules additionnels."
-        />
-        <FeaturesGrid features={addons} columns={4} />
-      </Section>
+      {addons.length > 0 && (
+        <Section>
+          <SectionHeader
+            title="Modules "
+            gradientText="Complémentaires"
+            description="Personnalisez votre expérience avec nos modules additionnels."
+          />
+          <FeaturesGrid features={addons} columns={4} />
+        </Section>
+      )}
 
       <Section variant="alt">
         <SectionHeader
           title="Questions "
-          gradientText="Fréquentes"
-          description="Tout ce que vous devez savoir sur nos tarifs et plans."
+          gradientText="fréquentes"
+          description="Tout ce que vous devez savoir sur les abonnements et les minutes incluses."
         />
         <FAQGrid faqs={faqs} />
       </Section>
 
       <CTASection
         title="Prêt à "
-        gradientText="commencer"
-        description="Demandez-nous une démonstration et découvrez comment nous pouvons transformer votre business.
-"
-        primaryButton="Demander une démonstation"
+        gradientText="récupérer le CA perdu"
+        description="Demandez une démonstration et testez l'accueil téléphonique 24/7 dès 60€/mois."
+        primaryButton="Demander une démonstration"
         secondaryButton="Parler à un expert"
       />
     </PageContainer>

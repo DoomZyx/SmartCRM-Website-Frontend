@@ -21,13 +21,13 @@ export const useContactData = () => {
     {
       icon: <Phone className="icon" />,
       title: "Téléphone",
-      value: "+33 7 49 34 55 10",
+      value: "+33 6 72 88 62 55",
       description: "Lun-Ven 9h-18h",
     },
     {
       icon: <MapPin className="icon" />,
-      title: "Adresse",
-      value: "125 rue de la République, 57240 Knutange",
+      title: "Localisation",
+      value: "Metz",
       // description: "Siège social",
     },
     {

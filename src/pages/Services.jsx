@@ -19,43 +19,43 @@ const Services = () => {
   return (
     <PageContainer>
       <Hero
-        title="Nos "
-        gradientText="Services"
-        description="Découvrez notre suite complète d'outils CRM et d'intelligence artificielle conçus pour révolutionner votre relation client."
+        title="Une solution "
+        gradientText="pour les restaurateurs"
+        description="Accueil téléphonique 24/7 par l'IA, carte personnalisable, récupération du CA perdu. Conçu pour la restauration et la restauration rapide."
       />
 
       <Section variant="alt">
         <SectionHeader
-          title="CRM "
-          gradientText="Intelligent"
-          description="Un CRM moderne et puissant pour gérer efficacement vos clients, prospects et opportunités de vente."
+          title="Carte, réservations et "
+          gradientText="commandes"
+          description="Personnalisez votre carte et laissez l'IA gérer réservations et commandes."
         />
         <FeaturesGrid features={crmFeatures} columns={4} />
       </Section>
 
       <Section>
         <SectionHeader
-          title="Chatbot "
-          gradientText="IA"
-          description="Automatisez vos conversations client avec notre intelligence artificielle conversationnelle de pointe."
+          title="IA vocale "
+          gradientText="spécialisée restauration"
+          description="Plus d'appels manqués. Une IA entraînée sur le cas d'usage des restaurants, pas un outil générique."
         />
         <FeaturesGrid features={aiFeatures} columns={4} variant="alt" />
       </Section>
 
-      {/* <Section variant="alt">
+      <Section variant="alt">
         <SectionHeader
-          title="Intégrations "
-          gradientText="Flexibles"
-          description="Connectez SmartCRM à vos outils existants et accédez à vos données depuis n'importe où."
+          title="Pourquoi nous, pas "
+          gradientText="les autres"
+          description="Contrairement à ElevenLabs, Ringover ou Vapi : spécialisation restauration, carte dédiée, CA générée, imprévus du quotidien."
         />
         <FeaturesGrid features={integrations} columns={3} />
-      </Section> */}
+      </Section>
 
       <CTASection
-        title="Prêt à découvrir nos "
-        gradientText="services"
-        description="Demandez-nous une démonstration et découvrez comment nous pouvons transformer votre business."
-        primaryButton="Demander une démonstation"
+        title="Prêt à récupérer le CA "
+        gradientText="des appels manqués"
+        description="Demandez une démonstration et testez avec un abonnement dès 60€/mois."
+        primaryButton="Demander une démonstration"
       />
     </PageContainer> 
   );
