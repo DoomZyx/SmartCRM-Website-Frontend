@@ -13,4 +13,23 @@
     font-size: 0.875rem;
     padding: 8px 16px;
   }
+
+  .header-link-btn {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .btn-ghost-header {
+    background: transparent;
+    border: none;
+    color: $text-secondary;
+    font-size: 0.875rem;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $accent-primary;
+    }
+  }
 }

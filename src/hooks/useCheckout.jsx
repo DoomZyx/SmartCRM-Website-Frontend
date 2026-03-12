@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const API_BASE_URL = "https://smartcrm-website.onrender.com/api";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
 /**
  * Appelle le backend pour créer une session Stripe Checkout et redirige vers l'URL renvoyée.
@@ -11,11 +11,12 @@ export const useCheckout = () => {
   const [error, setError] = useState(null);
 
   const createCheckoutSession = async (planId) => {
+    if (!API_BASE_URL) return;
     setIsLoading(true);
     setError(null);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/checkout/create-session`, {
+      const response = await fetch(`${API_BASE_URL}/api/checkout/create-session`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

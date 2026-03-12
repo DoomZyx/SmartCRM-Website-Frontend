@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const API_BASE_URL = "https://smartcrm-website.onrender.com/api";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
 export const useContactForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -8,12 +8,13 @@ export const useContactForm = () => {
   const [success, setSuccess] = useState(false);
 
   const submitContactForm = async (formData) => {
+    if (!API_BASE_URL) throw new Error("API non configurée");
     setIsLoading(true);
     setError(null);
     setSuccess(false);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/contact`, {
+      const response = await fetch(`${API_BASE_URL}/api/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
