@@ -11,7 +11,7 @@ import "./AuthCallback.scss";
  */
 const AuthCallback = () => {
   const navigate = useNavigate();
-  const { setAuth, isAuthenticated } = useAuth();
+  const { setAuth, isAuthenticated, user } = useAuth();
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -22,7 +22,11 @@ const AuthCallback = () => {
       if (cancelled) return;
       if (apiUser) {
         setAuth(apiUser);
-        navigate("/mon-espace", { replace: true });
+        const hasSubscriptionOrInstance =
+          !!apiUser.planId || !!apiUser.smartcrmInstanceId;
+        navigate(hasSubscriptionOrInstance ? "/mon-espace" : "/onboarding", {
+          replace: true,
+        });
       } else {
         setError("Échec de la connexion ou session expirée. Réessayez.");
       }
@@ -35,10 +39,14 @@ const AuthCallback = () => {
   }, [setAuth, navigate]);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/mon-espace", { replace: true });
+    if (isAuthenticated && user) {
+      const hasSubscriptionOrInstance =
+        !!user.planId || !!user.smartcrmInstanceId;
+      navigate(hasSubscriptionOrInstance ? "/mon-espace" : "/onboarding", {
+        replace: true,
+      });
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, user, navigate]);
 
   return (
     <div className="auth-callback">

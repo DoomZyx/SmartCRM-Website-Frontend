@@ -25,6 +25,7 @@ import MentionsLegales from "./pages/MentionsLegales";
 import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
 import ServiceIATelephonique from "./pages/ServiceIATelephonique";
 import FonctionnalitesPrevues from "./pages/FonctionnalitesPrevues";
+import Onboarding from "./pages/Onboarding";
 
 /** Redirige vers le callback backend si Google a renvoyé l'utilisateur sur le frontend (mauvaise config redirect URI). */
 function GoogleCallbackRedirect() {
@@ -78,6 +79,14 @@ function AppContent() {
           element={
             <ProtectedRoute>
               <MonEspace />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/onboarding"
+          element={
+            <ProtectedRoute>
+              <Onboarding />
             </ProtectedRoute>
           }
         />
