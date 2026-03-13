@@ -22,6 +22,74 @@ export const getGoogleLoginUrl = () => {
 };
 
 /**
+ * Inscription avec email et mot de passe. Crée le compte et définit le cookie.
+ * @returns {Promise<{ id, email, name, ... }>}
+ */
+export const registerApi = async (email, password) => {
+  if (!API_BASE_URL) throw new Error("API non configurée.");
+  const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({
+      email: (email || "").trim().toLowerCase(),
+      password: password || "",
+    }),
+  });
+  if (!response.ok) {
+    const data = await response.json().catch(() => ({}));
+    throw new Error(data.message || "Inscription impossible.");
+  }
+  const data = await response.json();
+  return data.user ?? data;
+};
+
+/**
+ * Connexion avec email et mot de passe. Définit le cookie côté backend.
+ * @returns {Promise<{ id, email, name, ... } | null>} Utilisateur ou null en cas d'échec
+ */
+export const loginWithEmailPassword = async (email, password) => {
+  if (!API_BASE_URL) return null;
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({
+        email: (email || "").trim(),
+        password: password || "",
+      }),
+    });
+    if (!response.ok) {
+      const data = await response.json().catch(() => ({}));
+      throw new Error(data.message || "Connexion impossible.");
+    }
+    const data = await response.json();
+    return data.user ?? data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+/**
+ * Définit le mot de passe de l'utilisateur connecté (après OAuth ou avant checkout).
+ * @param {string} password Mot de passe (min. 8 caractères)
+ */
+export const setPasswordApi = async (password) => {
+  if (!API_BASE_URL) throw new Error("API non configurée.");
+  const response = await fetch(`${API_BASE_URL}/api/auth/set-password`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({ password: (password || "").trim() }),
+  });
+  if (!response.ok) {
+    const data = await response.json().catch(() => ({}));
+    throw new Error(data.message || "Impossible de définir le mot de passe.");
+  }
+};
+
+/**
  * Récupère l'utilisateur courant via le cookie HttpOnly.
  * Le backend lit le cookie (token) et renvoie uniquement les infos user (jamais le token).
  * À appeler avec credentials: 'include' pour envoyer le cookie.

@@ -1,18 +1,28 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Check, Star, Sparkles, Clock } from "lucide-react";
 import { useDemoModal } from "../../../contexts/DemoModalContext";
+import { useLoginModal } from "../../../contexts/LoginModalContext";
+import { useAuth } from "../../../hooks/useAuth";
 import { useOptimizedAnimation } from "../../../hooks/useOptimizedAnimation";
 import { useCheckout } from "../../../hooks/useCheckout";
 import "./PricingCard.scss";
 
 const PricingCard = ({ plan, delay = 0 }) => {
+  const navigate = useNavigate();
   const animationProps = useOptimizedAnimation(delay, "fadeUp");
   const { openDemoModal } = useDemoModal();
+  const { openLoginModal } = useLoginModal();
+  const { isAuthenticated } = useAuth();
   const { createCheckoutSession, isLoading, error } = useCheckout();
 
   const handleCheckout = () => {
-    createCheckoutSession(plan.id);
+    if (!isAuthenticated) {
+      openLoginModal({ planId: plan.id });
+      return;
+    }
+    navigate(`/onboarding?planId=${plan.id}`);
   };
 
   return (

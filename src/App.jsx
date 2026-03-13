@@ -4,21 +4,25 @@ import {
   Routes,
   Route,
   Navigate,
+  useLocation,
+  useNavigate,
+  useSearchParams,
 } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import CookieBanner from "./components/Shared/CookieBanner/CookieBanner";
 import ScrollToTop from "./components/Shared/ScrollToTop/ScrollToTop";
 import DemoModal from "./components/Shared/DemoModal/DemoModal";
+import LoginModal from "./components/Shared/LoginModal/LoginModal";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import { DemoModalProvider, useDemoModal } from "./contexts/DemoModalContext";
+import { LoginModalProvider, useLoginModal } from "./contexts/LoginModalContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import { AnimationProvider } from "./components/Shared/AnimationProvider/AnimationProvider";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import Pricing from "./pages/Pricing";
 import Contact from "./pages/Contact";
-import Login from "./pages/Login";
 import AuthCallback from "./pages/AuthCallback";
 import MonEspace from "./pages/MonEspace";
 import MentionsLegales from "./pages/MentionsLegales";
@@ -38,8 +42,29 @@ function GoogleCallbackRedirect() {
   return <div>Redirection...</div>;
 }
 
+/** /login : ouvre la modale de connexion avec intent (planId, from) puis redirige vers /. */
+function LoginRedirect() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const { openLoginModal } = useLoginModal();
+
+  useEffect(() => {
+    const planIdParam = searchParams.get("planId");
+    const planId = planIdParam ? parseInt(planIdParam, 10) : undefined;
+    openLoginModal({
+      planId: Number.isInteger(planId) ? planId : undefined,
+      from: location.state?.from,
+    });
+    navigate("/", { replace: true });
+  }, [location.state?.from, searchParams, openLoginModal, navigate]);
+
+  return null;
+}
+
 function AppContent() {
   const { isDemoModalOpen, closeDemoModal } = useDemoModal();
+  const { isLoginModalOpen, closeLoginModal } = useLoginModal();
 
   return (
     <div className="App">
@@ -63,13 +88,12 @@ function AppContent() {
           path="/fonctionnalites-prevues"
           element={<FonctionnalitesPrevues />}
         />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<LoginRedirect />} />
         <Route
           path="api/auth/google"
           element={<Navigate to="/login" replace />}
         />
         <Route path="api/auth/callback" element={<AuthCallback />} />
-        {/* Si Google redirige vers le frontend par erreur, renvoyer vers le backend avec le code */}
         <Route
           path="/api/auth/google/callback"
           element={<GoogleCallbackRedirect />}
@@ -94,6 +118,7 @@ function AppContent() {
       <Footer />
       <CookieBanner />
       <DemoModal isOpen={isDemoModalOpen} onClose={closeDemoModal} />
+      <LoginModal isOpen={isLoginModalOpen} onClose={closeLoginModal} />
     </div>
   );
 }
@@ -104,7 +129,9 @@ function App() {
       <AnimationProvider>
         <AuthProvider>
           <DemoModalProvider>
-            <AppContent />
+            <LoginModalProvider>
+              <AppContent />
+            </LoginModalProvider>
           </DemoModalProvider>
         </AuthProvider>
       </AnimationProvider>

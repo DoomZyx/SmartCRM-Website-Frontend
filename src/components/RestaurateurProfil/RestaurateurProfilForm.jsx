@@ -220,7 +220,7 @@ const RestaurateurProfilForm = () => {
             onChange={handleChange}
             required
             className="form-input"
-            placeholder="01 23 45 67 89"
+            placeholder="FR:+33123456789 | LU:+35247825 | B:+3223744264"
           />
         </div>
         <div className="form-group">
