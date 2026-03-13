@@ -13,7 +13,6 @@ const Navigation = () => {
   const navItems = [
     { name: "Accueil", path: "/" },
     { name: "Nos Services", path: "/services" },
-    { name: "À Propos", path: "/about" },
     { name: "Tarifs", path: "/pricing" },
     { name: "Contact", path: "/contact" },
   ];
