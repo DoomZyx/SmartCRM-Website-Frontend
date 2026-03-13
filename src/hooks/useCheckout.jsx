@@ -21,6 +21,7 @@ export const useCheckout = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({ planId }),
       });
 

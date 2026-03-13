@@ -5,11 +5,19 @@ import { useRestaurateurProfile } from "../../hooks/useRestaurateurProfile";
 import NotificationToast from "../Shared/NotificationToast/NotificationToast";
 import "./RestaurateurProfilForm.scss";
 
+const PAYS_OPTIONS = [
+  { value: "", label: "Sélectionner un pays" },
+  { value: "France", label: "France" },
+  { value: "Luxembourg", label: "Luxembourg" },
+  { value: "Belgique", label: "Belgique" },
+];
+
 const defaultFormData = {
   nomEtablissement: "",
   adresse: "",
   codePostal: "",
   ville: "",
+  pays: "",
   telephone: "",
   email: "",
   nombreCouverts: "",
@@ -50,6 +58,7 @@ const RestaurateurProfilForm = () => {
         adresse: profile.adresse ?? "",
         codePostal: profile.codePostal ?? "",
         ville: profile.ville ?? "",
+        pays: profile.pays ?? "",
         telephone: profile.telephone ?? "",
         email: profile.email ?? user?.email ?? prev.email,
         nombreCouverts: profile.nombreCouverts != null ? String(profile.nombreCouverts) : "",
@@ -176,6 +185,26 @@ const RestaurateurProfilForm = () => {
             placeholder="Paris"
           />
         </div>
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="pays" className="form-label">
+          Pays *
+        </label>
+        <select
+          id="pays"
+          name="pays"
+          value={formData.pays}
+          onChange={handleChange}
+          required
+          className="form-input"
+        >
+          {PAYS_OPTIONS.map((opt) => (
+            <option key={opt.value || "empty"} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="form-row">
