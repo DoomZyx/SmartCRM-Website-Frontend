@@ -32,10 +32,6 @@ export { default as ContactForm } from "./Contact/ContactForm/ContactForm.jsx";
 export { default as ContactBenefits } from "./Contact/ContactBenefits/ContactBenefits.jsx";
 export { default as MapSection } from "./Contact/MapSection/MapSection.jsx";
 
-// Composants About
-export { default as StorySection } from "./About/StorySection/StorySection.jsx";
-export { default as TeamCard } from "./About/TeamCard/TeamCard.jsx";
-export { default as MissionSection } from "./About/MissionSection/MissionSection.jsx";
 
 // Composant Footer
 export { default as Footer } from "./Footer/Footer.jsx";
