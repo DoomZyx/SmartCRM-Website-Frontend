@@ -1,10 +1,12 @@
 import React from "react";
-import { CreditCard } from "lucide-react";
+import { CreditCard, LayoutDashboard } from "lucide-react";
 import { PageContainer, Hero, Section } from "../components";
 import RestaurateurProfilForm from "../components/RestaurateurProfil/RestaurateurProfilForm";
 import { useAuth } from "../hooks/useAuth";
 import { usePricingData } from "../hooks/usePricingData";
 import "./MonEspace.scss";
+
+const APP_URL = import.meta.env.VITE_APP_URL || "/app/";
 
 const MonEspace = () => {
   const { user } = useAuth();
@@ -17,6 +19,7 @@ const MonEspace = () => {
     ? subscriptionPlan.name
     : user?.subscriptionPlan || null;
   const displaySubscription = subscriptionLabel || "Aucun abonnement actif";
+  const hasAppAccess = Boolean(user?.smartcrmInstanceId);
 
   return (
     <PageContainer>
@@ -38,6 +41,29 @@ const MonEspace = () => {
               </p>
             </div>
           </div>
+
+          {hasAppAccess && (
+            <div className="mon-espace-app-access">
+              <LayoutDashboard className="mon-espace-app-access-icon" />
+              <div className="mon-espace-app-access-content">
+                <h3 className="mon-espace-app-access-title">
+                  Application mySmartCRM
+                </h3>
+                <p className="mon-espace-app-access-desc">
+                  Accédez à votre tableau de bord, commandes et réservations.
+                </p>
+                <a
+                  href={APP_URL}
+                  className="mon-espace-app-access-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ouvrir l&apos;application
+                </a>
+              </div>
+            </div>
+          )}
+
           <h2 className="mon-espace-form-title">
             Informations de l&apos;établissement
           </h2>
