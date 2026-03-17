@@ -122,6 +122,11 @@ const LoginModal = ({ isOpen, onClose }) => {
           <p className="login-modal-subtitle">
             Connectez-vous avec votre adresse e-mail ou avec Google pour accéder à votre espace.
           </p>
+          {isRegisterMode && (
+            <p className="login-modal-subtitle login-modal-subtitle--info">
+              Après inscription, complétez obligatoirement vos informations personnelles et celles de votre restaurant dans Mon espace afin que les données soient transmises à votre instance.
+            </p>
+          )}
 
           <form onSubmit={handleSubmit} className="login-form">
             <div className="form-group">

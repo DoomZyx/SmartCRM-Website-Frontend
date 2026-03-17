@@ -19,6 +19,7 @@ import { DemoModalProvider, useDemoModal } from "./contexts/DemoModalContext";
 import { LoginModalProvider, useLoginModal } from "./contexts/LoginModalContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import { AnimationProvider } from "./components/Shared/AnimationProvider/AnimationProvider";
+import ErrorBoundary from "./components/Shared/ErrorBoundary/ErrorBoundary";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import Pricing from "./pages/Pricing";
@@ -126,15 +127,17 @@ function AppContent() {
 function App() {
   return (
     <Router>
-      <AnimationProvider>
-        <AuthProvider>
-          <DemoModalProvider>
-            <LoginModalProvider>
-              <AppContent />
-            </LoginModalProvider>
-          </DemoModalProvider>
-        </AuthProvider>
-      </AnimationProvider>
+      <ErrorBoundary>
+        <AnimationProvider>
+          <AuthProvider>
+            <DemoModalProvider>
+              <LoginModalProvider>
+                <AppContent />
+              </LoginModalProvider>
+            </DemoModalProvider>
+          </AuthProvider>
+        </AnimationProvider>
+      </ErrorBoundary>
     </Router>
   );
 }

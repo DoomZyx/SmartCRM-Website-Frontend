@@ -67,6 +67,9 @@ const MonEspace = () => {
           <h2 className="mon-espace-form-title">
             Informations de l&apos;établissement
           </h2>
+          <p className="mon-espace-form-intro">
+            Ces informations (personnelles et restaurant) sont obligatoires. Elles sont transmises à votre instance pour que l&apos;application mySmartCRM et l&apos;IA téléphonique fonctionnent correctement avec vos données.
+          </p>
           <RestaurateurProfilForm />
         </div>
       </Section>

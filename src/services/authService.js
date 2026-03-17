@@ -92,7 +92,7 @@ export const setPasswordApi = async (password) => {
 /**
  * Récupère l'utilisateur courant via le cookie HttpOnly.
  * Le backend lit le cookie (token) et renvoie uniquement les infos user (jamais le token).
- * À appeler avec credentials: 'include' pour envoyer le cookie.
+ * Retourne null si non authentifié (401, etc.), rejette en cas d'erreur réseau pour permettre au caller de logger.
  * @returns {Promise<{ id, email, name, picture?, ... } | null>}
  */
 export const getCurrentUser = async () => {
@@ -105,8 +105,8 @@ export const getCurrentUser = async () => {
     if (!response.ok) return null;
     const data = await response.json();
     return data.user ?? data;
-  } catch {
-    return null;
+  } catch (err) {
+    return Promise.reject(err);
   }
 };
 

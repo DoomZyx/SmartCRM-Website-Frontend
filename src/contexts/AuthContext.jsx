@@ -5,29 +5,46 @@ export const AuthContext = createContext(null);
 
 const STORAGE_KEY_USER = "smartcrm_user";
 
+function logAuthError(message, err) {
+  if (import.meta.env.DEV && typeof console !== "undefined" && console.error) {
+    console.error(`[Auth] ${message}`, err?.message ?? err);
+  }
+}
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [authError, setAuthError] = useState(null);
 
   const isAuthenticated = !!user;
 
   const setAuth = useCallback((userData) => {
     setUser(userData);
+    setAuthError(null);
     try {
       if (userData) {
         localStorage.setItem(STORAGE_KEY_USER, JSON.stringify(userData));
       } else {
         localStorage.removeItem(STORAGE_KEY_USER);
       }
-    } catch (e) {}
+    } catch (e) {
+      logAuthError("setAuth localStorage", e);
+    }
   }, []);
 
   const logout = useCallback(async () => {
-    await logoutApi();
+    try {
+      await logoutApi();
+    } catch (e) {
+      logAuthError("logout", e);
+    }
     setUser(null);
+    setAuthError(null);
     try {
       localStorage.removeItem(STORAGE_KEY_USER);
-    } catch (e) {}
+    } catch (e) {
+      logAuthError("logout localStorage", e);
+    }
   }, []);
 
   useEffect(() => {
@@ -43,20 +60,37 @@ export const AuthProvider = ({ children }) => {
         }
       })();
 
-      const apiUser = await getCurrentUser();
-      if (cancelled) return;
-      if (apiUser) {
-        setUser(apiUser);
-        try {
-          localStorage.setItem(STORAGE_KEY_USER, JSON.stringify(apiUser));
-        } catch (e) {}
-      } else {
+      try {
+        const apiUser = await getCurrentUser();
+        if (cancelled) return;
+        if (apiUser) {
+          setUser(apiUser);
+          setAuthError(null);
+          try {
+            localStorage.setItem(STORAGE_KEY_USER, JSON.stringify(apiUser));
+          } catch (e) {
+            logAuthError("init localStorage set", e);
+          }
+        } else {
+          setUser(null);
+          setAuthError(null);
+          try {
+            localStorage.removeItem(STORAGE_KEY_USER);
+          } catch (e) {
+            logAuthError("init localStorage remove", e);
+          }
+        }
+      } catch (err) {
+        if (cancelled) return;
+        logAuthError("getCurrentUser", err);
+        setAuthError(err?.message ?? "Erreur de connexion");
         setUser(null);
         try {
           localStorage.removeItem(STORAGE_KEY_USER);
         } catch (e) {}
+      } finally {
+        if (!cancelled) setIsInitialized(true);
       }
-      setIsInitialized(true);
     };
 
     init();
@@ -69,6 +103,7 @@ export const AuthProvider = ({ children }) => {
     user,
     isAuthenticated,
     isInitialized,
+    authError,
     setAuth,
     logout,
   };

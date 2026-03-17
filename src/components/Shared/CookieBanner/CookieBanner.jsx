@@ -70,13 +70,13 @@ const CookieBanner = () => {
     
     if (consent.analytics) {
       // Google Analytics ou autre outil d'analyse
-      console.log("Analytics activés");
-      // Exemple : gtag('consent', 'update', { analytics_storage: 'granted' });
+      if (import.meta.env.DEV) {
+        // Exemple : gtag('consent', 'update', { analytics_storage: 'granted' });
+      }
     }
     
     if (consent.functional) {
       // Cookies fonctionnels pour améliorer l'expérience
-      console.log("Cookies fonctionnels activés");
       // - Mémorisation des préférences de formulaire
       // - Sauvegarde des données de contact temporaires
     }
