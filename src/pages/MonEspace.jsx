@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { CreditCard, LayoutDashboard } from "lucide-react";
 import { PageContainer, Hero, Section } from "../components";
 import RestaurateurProfilForm from "../components/RestaurateurProfil/RestaurateurProfilForm";
+import InstanceSetupModal from "../components/Shared/InstanceSetupModal/InstanceSetupModal";
 import { useAuth } from "../hooks/useAuth";
 import { usePricingData } from "../hooks/usePricingData";
 import "./MonEspace.scss";
@@ -11,6 +13,19 @@ const APP_URL = import.meta.env.VITE_APP_URL || "/app/";
 const MonEspace = () => {
   const { user } = useAuth();
   const { plans } = usePricingData();
+  const [searchParams] = useSearchParams();
+  const [showInstanceModal, setShowInstanceModal] = useState(false);
+
+  const checkoutStatus = searchParams.get("checkout");
+  useEffect(() => {
+    if (
+      checkoutStatus === "success" &&
+      user?.planId &&
+      !user?.smartcrmInstanceId
+    ) {
+      setShowInstanceModal(true);
+    }
+  }, [checkoutStatus, user?.planId, user?.smartcrmInstanceId]);
 
   const subscriptionPlan = user?.planId
     ? plans.find((p) => p.id === user.planId)
@@ -23,6 +38,10 @@ const MonEspace = () => {
 
   return (
     <PageContainer>
+      <InstanceSetupModal
+        isOpen={showInstanceModal}
+        onClose={() => setShowInstanceModal(false)}
+      />
       <Hero
         title="Mon "
         gradientText="espace"
@@ -60,6 +79,27 @@ const MonEspace = () => {
                 >
                   Ouvrir l&apos;application
                 </a>
+              </div>
+            </div>
+          )}
+
+          {user?.planId && !user?.smartcrmInstanceId && (
+            <div className="mon-espace-instance-required">
+              <LayoutDashboard className="mon-espace-instance-required-icon" />
+              <div className="mon-espace-instance-required-content">
+                <h3 className="mon-espace-instance-required-title">
+                  Configuration requise pour l&apos;application
+                </h3>
+                <p className="mon-espace-instance-required-desc">
+                  Votre abonnement est actif. Complétez la configuration de votre instance (nom d&apos;établissement, adresse, etc.) pour créer votre espace mySmartCRM et accéder à l&apos;application.
+                </p>
+                <button
+                  type="button"
+                  className="mon-espace-instance-required-btn"
+                  onClick={() => setShowInstanceModal(true)}
+                >
+                  Compléter la configuration
+                </button>
               </div>
             </div>
           )}

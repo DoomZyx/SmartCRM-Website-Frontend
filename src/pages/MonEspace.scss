@@ -83,6 +83,56 @@
   }
 }
 
+.mon-espace-instance-required {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: $bg-card;
+  border: 1px solid $accent-primary;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.mon-espace-instance-required-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: $accent-primary;
+}
+
+.mon-espace-instance-required-content {
+  flex: 1;
+}
+
+.mon-espace-instance-required-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $text-primary;
+  margin: 0 0 0.25rem 0;
+}
+
+.mon-espace-instance-required-desc {
+  font-size: 0.8125rem;
+  color: $text-muted;
+  margin: 0 0 0.75rem 0;
+}
+
+.mon-espace-instance-required-btn {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  background: $accent-primary;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
 .mon-espace-form-title {
   font-size: 1.25rem;
   font-weight: 600;
