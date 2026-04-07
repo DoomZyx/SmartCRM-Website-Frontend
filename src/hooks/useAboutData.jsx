@@ -3,7 +3,7 @@ export const useAboutData = () => {
     title: "Notre ",
     gradientText: "Histoire",
     paragraphs: [
-      "mySmartCRM est né d'une vision simple : démocratiser l'intelligence artificielle pour toutes les entreprises, quelle que soit leur taille. En 2025, le fondateur a constaté que les restaurateurs avaient un probleème récurrent la surcharge des appels.",
+      "mySmartFood est né d'une vision simple : démocratiser l'intelligence artificielle pour toutes les entreprises, quelle que soit leur taille. En 2025, le fondateur a constaté que les restaurateurs avaient un probleème récurrent la surcharge des appels.",
       "Il a donc décidé de créer une plateforme qui combine la puissance d'un outil de gestion avec l'intelligence artificielle, le tout dans une interface intuitive et accessible. L'objectif ? Permettre à chaque restaurateurs de bénéficier des mêmes outils que les grandes chaines.",
     ],
     stats: [

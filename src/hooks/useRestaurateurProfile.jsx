@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { submitOnboardingDossierApi } from "../services/authService";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
@@ -12,6 +13,8 @@ export const useRestaurateurProfile = () => {
   const [isLoadingProfile, setIsLoadingProfile] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [onboardingError, setOnboardingError] = useState(null);
+  const [isSubmittingOnboarding, setIsSubmittingOnboarding] = useState(false);
 
   const loadProfile = useCallback(async () => {
     if (!API_BASE_URL) return null;
@@ -62,16 +65,35 @@ export const useRestaurateurProfile = () => {
   const resetForm = useCallback(() => {
     setError(null);
     setSuccess(false);
+    setOnboardingError(null);
   }, []);
+
+  const submitOnboardingDossier = async (formData, files) => {
+    setIsSubmittingOnboarding(true);
+    setOnboardingError(null);
+    try {
+      const data = await submitOnboardingDossierApi(formData, files);
+      if (data.profile) setProfile(data.profile);
+      return data;
+    } catch (err) {
+      setOnboardingError(err.message || "Erreur lors de l'envoi du dossier");
+      throw err;
+    } finally {
+      setIsSubmittingOnboarding(false);
+    }
+  };
 
   return {
     profile,
     loadProfile,
     submitProfile,
+    submitOnboardingDossier,
     isLoading,
     isLoadingProfile,
+    isSubmittingOnboarding,
     error,
     success,
+    onboardingError,
     resetForm,
   };
 };

@@ -32,6 +32,15 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
+  const refreshUser = useCallback(async () => {
+    try {
+      const apiUser = await getCurrentUser();
+      setAuth(apiUser || null);
+    } catch (err) {
+      logAuthError("refreshUser", err);
+    }
+  }, [setAuth]);
+
   const logout = useCallback(async () => {
     try {
       await logoutApi();
@@ -105,6 +114,7 @@ export const AuthProvider = ({ children }) => {
     isInitialized,
     authError,
     setAuth,
+    refreshUser,
     logout,
   };
 

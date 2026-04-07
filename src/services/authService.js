@@ -111,36 +111,34 @@ export const getCurrentUser = async () => {
 };
 
 /**
- * Enregistre le profil restaurateur et crée l'instance SmartCRM (après paiement).
- * Si idDocument ou addressDocument sont fournis, envoie en multipart/form-data pour Twilio (bundle).
- * @param {Object} formData - nomEtablissement, adresse, codePostal, ville, pays, telephone, email, etc.
- * @param {File|null} [idDocument] - pièce d'identité (PDF ou image)
- * @param {File|null} [addressDocument] - justificatif de domicile (PDF ou image)
- * @returns {Promise<{ profile, instance }>}
+ * Transmet le dossier Twilio (coordonnées + pièces) depuis Mon espace. Pas de création d'instance automatique.
+ * @param {Object} formData - champs profil dont twilioNumberUsage
+ * @param {{ kbisDocument: File, idDocumentRecto: File, idDocumentVerso: File, addressDocument: File }} files
  */
-export const provisionInstanceApi = async (formData, idDocument = null, addressDocument = null) => {
+export const submitOnboardingDossierApi = async (formData, files) => {
   if (!API_BASE_URL) throw new Error("API non configurée.");
-  const hasFiles = idDocument || addressDocument;
-  const options = {
+  const { kbisDocument, idDocumentRecto, idDocumentVerso, addressDocument } = files || {};
+  if (!kbisDocument || !idDocumentRecto || !idDocumentVerso || !addressDocument) {
+    throw new Error(
+      "Documents requis : KBIS, pièce d'identité recto et verso, justificatif d'adresse.",
+    );
+  }
+  const body = new FormData();
+  Object.keys(formData).forEach((key) => {
+    if (formData[key] != null && formData[key] !== "") body.append(key, formData[key]);
+  });
+  body.append("kbisDocument", kbisDocument);
+  body.append("idDocumentRecto", idDocumentRecto);
+  body.append("idDocumentVerso", idDocumentVerso);
+  body.append("addressDocument", addressDocument);
+  const response = await fetch(`${API_BASE_URL}/api/auth/profile/submit-onboarding`, {
     method: "POST",
     credentials: "include",
-  };
-  if (hasFiles) {
-    const body = new FormData();
-    Object.keys(formData).forEach((key) => {
-      if (formData[key] != null && formData[key] !== "") body.append(key, formData[key]);
-    });
-    if (idDocument) body.append("idDocument", idDocument);
-    if (addressDocument) body.append("addressDocument", addressDocument);
-    options.body = body;
-  } else {
-    options.headers = { "Content-Type": "application/json" };
-    options.body = JSON.stringify(formData);
-  }
-  const response = await fetch(`${API_BASE_URL}/api/auth/profile/provision-instance`, options);
+    body,
+  });
   const data = await response.json().catch(() => ({}));
   if (!response.ok) {
-    throw new Error(data.message || "Impossible de créer votre instance.");
+    throw new Error(data.message || "Impossible d'envoyer le dossier.");
   }
   return data;
 };

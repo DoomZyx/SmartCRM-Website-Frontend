@@ -38,7 +38,7 @@ const FonctionnalitesPrevues = () => {
 
       <CTASection
         title="Participez à l'évolution de "
-        gradientText="mySmartCRM"
+        gradientText="mySmartFood"
         description="Votre feedback est précieux. Partagez vos suggestions pour les prochaines versions."
         primaryButton="Demander une démonstration"
         secondaryButton="Parler à un expert"

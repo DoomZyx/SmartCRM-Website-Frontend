@@ -40,7 +40,7 @@ const Onboarding = () => {
       <PageContainer>
         <Hero
           title="Avant le paiement"
-          gradientText="mySmartCRM"
+          gradientText="mySartFood"
           description="Vérifiez votre adresse e-mail, puis poursuivez vers le paiement sécurisé."
         />
         <Section variant="alt">
@@ -88,7 +88,7 @@ const Onboarding = () => {
     <PageContainer>
       <Hero
         title="Bienvenue sur "
-        gradientText="mySmartCRM"
+        gradientText="mySmartFood"
         description="Nous allons utiliser votre compte comme base de votre accès à l'application."
       />
       <Section variant="alt">
@@ -101,7 +101,7 @@ const Onboarding = () => {
           <p className="onboarding-text">
             Lorsque vous achèterez un abonnement, cette adresse e-mail sera
             utilisée comme identifiant principal pour accéder à
-            l&apos;application mySmartCRM.
+            l&apos;application mySmartFood.
           </p>
           <button
             type="button"

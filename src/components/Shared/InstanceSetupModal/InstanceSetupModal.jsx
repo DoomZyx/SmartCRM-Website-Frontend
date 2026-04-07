@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { X } from "lucide-react";
 import { useAuth } from "../../../hooks/useAuth";
-import { provisionInstanceApi, getCurrentUser } from "../../../services/authService";
+import { submitOnboardingDossierApi, getCurrentUser } from "../../../services/authService";
 import "./InstanceSetupModal.scss";
 
 const PAYS_OPTIONS = [
@@ -22,6 +22,7 @@ const defaultFormData = {
   email: "",
   nombreCouverts: "",
   typeCuisine: "",
+  twilioNumberUsage: "",
 };
 
 const ACCEPTED_DOC_TYPES = ".pdf,image/jpeg,image/png,image/jpg";
@@ -29,12 +30,14 @@ const MAX_FILE_SIZE_MB = 5;
 
 /**
  * Modale affichée après un paiement réussi : collecte les infos restaurant
- * et appelle le backend pour créer l'instance SmartCRM.
+ * et envoie le dossier Twilio (sans création d'instance automatique).
  */
 const InstanceSetupModal = ({ isOpen, onClose }) => {
   const { setAuth, user } = useAuth();
   const [formData, setFormData] = useState(defaultFormData);
-  const [idDocument, setIdDocument] = useState(null);
+  const [kbisDocument, setKbisDocument] = useState(null);
+  const [idDocumentRecto, setIdDocumentRecto] = useState(null);
+  const [idDocumentVerso, setIdDocumentVerso] = useState(null);
   const [addressDocument, setAddressDocument] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -61,19 +64,23 @@ const InstanceSetupModal = ({ isOpen, onClose }) => {
   const handleClose = useCallback(() => {
     setError(null);
     setProvisionResult(null);
-    setIdDocument(null);
+    setKbisDocument(null);
+    setIdDocumentRecto(null);
+    setIdDocumentVerso(null);
     setAddressDocument(null);
     onClose();
   }, [onClose]);
 
-  const handleFileChange = (name, e) => {
+  const handleFileChange = (field, e) => {
     const file = e.target.files?.[0];
     if (!file) return;
     if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
       setError(`Fichier ${file.name} trop volumineux (max ${MAX_FILE_SIZE_MB} Mo).`);
       return;
     }
-    if (name === "idDocument") setIdDocument(file);
+    if (field === "kbisDocument") setKbisDocument(file);
+    else if (field === "idDocumentRecto") setIdDocumentRecto(file);
+    else if (field === "idDocumentVerso") setIdDocumentVerso(file);
     else setAddressDocument(file);
     setError(null);
   };
@@ -96,16 +103,28 @@ const InstanceSetupModal = ({ isOpen, onClose }) => {
     e.preventDefault();
     setError(null);
     setProvisionResult(null);
+    const usage = (formData.twilioNumberUsage || "").trim();
+    if (usage.length < 15) {
+      setError("Décrivez l'usage prévu du numéro (quelques phrases).");
+      return;
+    }
+    if (!kbisDocument || !idDocumentRecto || !idDocumentVerso || !addressDocument) {
+      setError("KBIS, pièce d'identité recto et verso, et justificatif d'adresse sont requis.");
+      return;
+    }
     setIsLoading(true);
     try {
-      const data = await provisionInstanceApi(formData, idDocument, addressDocument);
+      const { username: _u, ...profilePayload } = formData;
+      const data = await submitOnboardingDossierApi(profilePayload, {
+        kbisDocument,
+        idDocumentRecto,
+        idDocumentVerso,
+        addressDocument,
+      });
       const apiUser = await getCurrentUser();
       if (apiUser) setAuth(apiUser);
       setProvisionResult({
-        twilioNumber: data.instance?.twilioNumber ?? null,
-        twilioTemporaryNumber: data.instance?.twilioTemporaryNumber ?? null,
-        regulatoryBundlePending: data.instance?.regulatoryBundlePending ?? false,
-        twilioNotes: data.instance?.twilioNotes ?? null,
+        message: data.message || "Dossier transmis.",
       });
     } catch (err) {
       setError(err.message || "Une erreur est survenue.");
@@ -130,45 +149,25 @@ const InstanceSetupModal = ({ isOpen, onClose }) => {
 
         <div className="instance-setup-modal-content">
           <h2 className="instance-setup-modal-title">
-            {provisionResult ? "Instance créée" : "Configuration de votre restaurant"}
+            {provisionResult ? "Dossier transmis" : "Configuration de votre restaurant"}
           </h2>
           <p className="instance-setup-modal-subtitle">
             {provisionResult
-              ? "Votre instance mySmartCRM est prête."
-              : "Complétez les informations ci-dessous pour créer votre instance mySmartCRM. Ces données seront utilisées pour personnaliser l'application et l'IA téléphonique."}
+              ? provisionResult.message
+              : "Complétez les informations ci-dessous et joignez les pièces pour Twilio. Notre équipe activera votre accès à l&apos;application ensuite ; vous recevrez un e-mail."}
           </p>
 
           {!provisionResult && (
             <div className="instance-setup-modal-info" role="status">
               <p>
-                L&apos;attribution d&apos;un numéro local ou international nécessite une pièce d&apos;identité et un justificatif de domicile.
-                Un numéro provisoire vous sera attribué immédiatement ; votre numéro définitif sera activé sous 24 à 72 h après vérification réglementaire.
+                KBIS ou équivalent, pièce d&apos;identité du dirigeant recto et verso, preuve d&apos;adresse (&lt; 3 mois), description de l&apos;usage du numéro. PDF ou image, max {MAX_FILE_SIZE_MB} Mo par fichier.
               </p>
             </div>
           )}
 
           {provisionResult ? (
             <div className="instance-setup-result">
-              {provisionResult.regulatoryBundlePending ? (
-                <>
-                  <p className="instance-setup-result-warning">
-                    Votre numéro local sera activé après vérification réglementaire (24 à 72 h). Vous recevrez un email dès qu&apos;il sera attribué.
-                  </p>
-                  {provisionResult.twilioTemporaryNumber && (
-                    <p className="instance-setup-result-success">
-                      Numéro provisoire en service : <strong>{provisionResult.twilioTemporaryNumber}</strong>
-                    </p>
-                  )}
-                </>
-              ) : provisionResult.twilioNumber ? (
-                <p className="instance-setup-result-success">
-                  Numéro Twilio attribué : <strong>{provisionResult.twilioNumber}</strong>
-                </p>
-              ) : provisionResult.twilioNotes ? (
-                <p className="instance-setup-result-warning">
-                  Aucun numéro Twilio n&apos;a pu être attribué. Raison : {provisionResult.twilioNotes}
-                </p>
-              ) : null}
+              <p className="instance-setup-result-success">{provisionResult.message}</p>
               <button type="button" className="instance-setup-form-submit" onClick={handleClose}>
                 Fermer
               </button>
@@ -357,25 +356,78 @@ const InstanceSetupModal = ({ isOpen, onClose }) => {
             </div>
 
             <div className="instance-setup-form-group">
-              <label htmlFor="instance-idDocument" className="instance-setup-form-label">
-                Pièce d&apos;identité (PDF ou image, max {MAX_FILE_SIZE_MB} Mo)
+              <label htmlFor="instance-twilioNumberUsage" className="instance-setup-form-label">
+                Usage prévu du numéro professionnel *
+              </label>
+              <textarea
+                id="instance-twilioNumberUsage"
+                name="twilioNumberUsage"
+                value={formData.twilioNumberUsage}
+                onChange={handleChange}
+                required
+                minLength={15}
+                maxLength={2000}
+                rows={4}
+                className="instance-setup-form-input"
+                placeholder="Ex : appels clients pour réservations et informations."
+                disabled={isLoading}
+              />
+            </div>
+
+            <div className="instance-setup-form-group">
+              <label htmlFor="instance-kbis" className="instance-setup-form-label">
+                KBIS ou équivalent *
               </label>
               <input
                 type="file"
-                id="instance-idDocument"
-                name="idDocument"
+                id="instance-kbis"
+                name="kbisDocument"
                 accept={ACCEPTED_DOC_TYPES}
-                onChange={(e) => handleFileChange("idDocument", e)}
+                onChange={(e) => handleFileChange("kbisDocument", e)}
                 className="instance-setup-form-input"
                 disabled={isLoading}
               />
-              {idDocument && (
-                <span className="instance-setup-form-file-name">{idDocument.name}</span>
+              {kbisDocument && (
+                <span className="instance-setup-form-file-name">{kbisDocument.name}</span>
+              )}
+            </div>
+            <div className="instance-setup-form-group">
+              <label htmlFor="instance-idRecto" className="instance-setup-form-label">
+                Pièce d&apos;identité dirigeant — recto *
+              </label>
+              <input
+                type="file"
+                id="instance-idRecto"
+                name="idDocumentRecto"
+                accept={ACCEPTED_DOC_TYPES}
+                onChange={(e) => handleFileChange("idDocumentRecto", e)}
+                className="instance-setup-form-input"
+                disabled={isLoading}
+              />
+              {idDocumentRecto && (
+                <span className="instance-setup-form-file-name">{idDocumentRecto.name}</span>
+              )}
+            </div>
+            <div className="instance-setup-form-group">
+              <label htmlFor="instance-idVerso" className="instance-setup-form-label">
+                Pièce d&apos;identité dirigeant — verso *
+              </label>
+              <input
+                type="file"
+                id="instance-idVerso"
+                name="idDocumentVerso"
+                accept={ACCEPTED_DOC_TYPES}
+                onChange={(e) => handleFileChange("idDocumentVerso", e)}
+                className="instance-setup-form-input"
+                disabled={isLoading}
+              />
+              {idDocumentVerso && (
+                <span className="instance-setup-form-file-name">{idDocumentVerso.name}</span>
               )}
             </div>
             <div className="instance-setup-form-group">
               <label htmlFor="instance-addressDocument" className="instance-setup-form-label">
-                Justificatif de domicile (PDF ou image, max {MAX_FILE_SIZE_MB} Mo)
+                Preuve d&apos;adresse établissement *
               </label>
               <input
                 type="file"
@@ -405,10 +457,10 @@ const InstanceSetupModal = ({ isOpen, onClose }) => {
               {isLoading ? (
                 <>
                   <span className="spinner" />
-                  Création en cours...
+                  Envoi en cours...
                 </>
               ) : (
-                "Créer mon instance"
+                "Transmettre le dossier"
               )}
             </button>
           </form>
