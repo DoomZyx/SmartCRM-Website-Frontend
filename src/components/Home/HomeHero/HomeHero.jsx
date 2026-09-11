@@ -8,10 +8,14 @@ const HomeHero = () => {
   const { openDemoModal } = useDemoModal();
 
   const stats = [
-    { number: "24/7", label: "Accueil téléphonique" },
-    { number: "0", label: "Appel manqué" },
-    { number: "100%", label: "IA spécialisée restauration" },
+    { number: "24/7", label: "L'assistant décroche" },
+    { number: "0", label: "Table lâchée pour le téléphone" },
+    { number: "100%", label: "Attention à la salle" },
   ];
+
+  const scrollToRoi = () => {
+    document.getElementById("simulateur-roi")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section className="hero-section">
@@ -32,21 +36,24 @@ const HomeHero = () => {
           className="hero-container"
         >
           <h1 className="hero-title">
-            Révolutionnez l'accueil téléphonique
-            <span className="text-gradient"> de votre restaurant</span>
+            La salle d&apos;abord.
+            <span className="text-gradient"> L&apos;assistant s&apos;occupe du téléphone.</span>
           </h1>
 
           <p className="hero-description">
-            Récupérez le chiffre d'affaires perdu à cause des appels manqués.
-            Une IA conversationnelle branchée sur une application web, disponible
-            24h/24 et 7j/7, conçue pour les restaurateurs et la restauration
-            rapide.
+            Pendant le service, votre équipe reste avec les clients. Un assistant
+            vocal prend les commandes et les réservations, les pose dans
+            l&apos;application, et vous laisse prioriser la salle — moins de
+            stress, plus de clients satisfaits.
           </p>
 
           <div className="hero-cta">
             <button className="btn btn-primary" onClick={openDemoModal}>
               Demander une démonstration
               <ArrowRight className="icon" />
+            </button>
+            <button type="button" className="btn btn-secondary" onClick={scrollToRoi}>
+              Estimer mon CA perdu
             </button>
           </div>
 

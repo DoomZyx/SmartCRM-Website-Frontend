@@ -5,69 +5,69 @@ const ServiceIATelephonique = () => {
   return (
     <PageContainer className="service-page">
       <Hero
-        title="IA téléphonique "
-        gradientText="pour la restauration"
-        description="Révolutionnez l'accueil téléphonique de votre restaurant. Une IA conversationnelle branchée sur une application web, 24/7, pour récupérer le CA perdu des appels manqués."
+        title="La salle d'abord. "
+        gradientText="Le téléphone, c'est l'assistant."
+        description="Pendant le service, l'équipe reste aux tables. L'assistant prend commandes et réservations, les écrit dans l'application. Moins de stress, plus de clients satisfaits."
       />
 
       <Section>
         <SectionHeader
-          title="Plus d'appels manqués"
-          description="Disponibilité 24h/24 et 7j/7 pour ne plus perdre une commande ou une réservation"
+          title="Prioriser la salle"
+          description="Décrocher n'est plus le travail du coup de feu"
         />
         <div className="legal-content">
-          <h3>Accueil téléphonique assuré en permanence</h3>
-          <p>En coup de feu ou en dehors des heures d'ouverture, l'IA répond à chaque appel. Plus besoin de décrocher entre deux plats : l'assistant vocal prend les commandes et les réservations à votre place.</p>
+          <h3>L'équipe sert, l'assistant répond</h3>
+          <p>En service ou hors horaires, la ligne est tenue. Personne n'abandonne une table pour le standard. Les commandes et réservations arrivent déjà posées dans l'application.</p>
 
-          <h3>Solution dédiée aux restaurateurs</h3>
+          <h3>Fait pour un restaurant</h3>
           <ul>
-            <li>IA entraînée sur le cas d'usage des restaurants</li>
-            <li>Compréhension des besoins et contraintes du métier</li>
-            <li>Ce que les outils génériques (ElevenLabs, Ringover, Vapi) ne proposent pas</li>
+            <li>Carte, horaires, capacité, emporter</li>
+            <li>Imprévus du quotidien (chaise haute, PMR)</li>
+            <li>Pas un outil générique de call center</li>
           </ul>
         </div>
       </Section>
 
       <Section variant="alt">
         <SectionHeader
-          title="Carte et menus personnalisables"
-          description="L'IA a accès à votre carte pour répondre avec précision"
+          title="Commandes et réservations"
+          description="L'application centralise ce que l'assistant a pris"
         />
         <div className="legal-content">
-          <h3>Interface pensée pour la restauration</h3>
-          <p>L'architecture et l'interface sont conçues pour personnaliser au maximum la carte : composition des sandwichs, plats, suppléments. L'assistant vocal connaît vos menus et peut renseigner les clients comme un membre de l'équipe.</p>
+          <h3>Une carte que l'assistant connaît</h3>
+          <p>Plats, compositions, suppléments. Le client au téléphone a une réponse précise. L'équipe en salle n'est pas interrompue pour répéter le menu.</p>
 
-          <h3>Réservations et commandes</h3>
+          <h3>Tout est écrit, vous pilotez</h3>
           <ul>
-            <li>Prise de réservations via l'IA ou manuellement dans l'interface</li>
-            <li>Commandes enregistrées dans l'interface</li>
-            <li>Gestion des imprévus du quotidien : chaise haute, accueil des personnes en mobilité réduite</li>
+            <li>Réservations et commandes dans l'interface</li>
+            <li>L'équipe valide et enchaîne, sans courir</li>
+            <li>Moins de charge mentale pour le personnel</li>
           </ul>
         </div>
       </Section>
 
       <Section>
         <SectionHeader
-          title="CA générée et abonnement mensuel"
-          description="Mesurez l'impact et testez à moindre coût"
+          title="CA rattrapé, équipe plus posée"
+          description="Le gain se voit sur les appels et dans la salle"
         />
         <div className="legal-content">
-          <h3>Chiffre d'affaires généré par l'assistant</h3>
-          <p>Le tableau de bord calcule le CA généré par l'assistant vocal intelligent (commandes et réservations prises). Vous visualisez concrètement le retour sur investissement.</p>
+          <h3>Ce que vous récupérez</h3>
+          <p>Chaque appel pris est une commande ou une table possible. Le tableau de bord montre ce que l'assistant a enregistré pendant que vous serviez.</p>
 
           <h3>Abonnement avec minutes incluses</h3>
           <ul>
-            <li>Durée d'appel limitée dans le mois selon la formule choisie</li>
-            <li>Formule d'essai à petit budget (dès 60€/mois) pour tester sans s'engager</li>
-            <li>Plusieurs paliers selon votre volume d'appels</li>
+            <li>Volume d'appels selon la formule</li>
+            <li>Offre beta à 150 €/mois, en conditions réelles de service</li>
+            <li>Paliers si le volume monte</li>
           </ul>
         </div>
       </Section>
 
       <CTASection
-        title="Récupérez le CA "
-        gradientText="des appels manqués"
-        description="Demandez une démonstration et découvrez comment l'IA téléphonique peut transformer l'accueil de votre restaurant."
+        title="Rendre la salle "
+        gradientText="au personnel"
+        description="Demandez une démonstration. On vous montre la ligne, ce qui arrive dans l'application, et ce que ça change en service."
         primaryButton="Demander une démonstration"
         secondaryButton="Parler à un expert"
       />

@@ -19,42 +19,42 @@ const Services = () => {
   return (
     <PageContainer>
       <Hero
-        title="Une solution "
-        gradientText="pour les restaurateurs"
-        description="Accueil téléphonique 24/7 par l'IA, carte personnalisable, récupération du CA perdu. Conçu pour la restauration et la restauration rapide."
+        title="La salle reste "
+        gradientText="votre priorité"
+        description="L'assistant tient le téléphone. L'application pose commandes et réservations. Votre équipe sert les clients présents, sans courir."
       />
 
       <Section variant="alt">
         <SectionHeader
-          title="Carte, réservations et "
-          gradientText="commandes"
-          description="Personnalisez votre carte et laissez l'IA gérer réservations et commandes."
+          title="Ce que l'application "
+          gradientText="prend en charge"
+          description="La carte, les commandes et les réservations au même endroit. Vous pilotez le service, pas le standard."
         />
         <FeaturesGrid features={crmFeatures} columns={4} />
       </Section>
 
       <Section>
         <SectionHeader
-          title="IA vocale "
-          gradientText="spécialisée restauration"
-          description="Plus d'appels manqués. Une IA entraînée sur le cas d'usage des restaurants, pas un outil générique."
+          title="Ce que l'assistant "
+          gradientText="enlève à l'équipe"
+          description="Décrocher en coup de feu, répéter la carte, noter une résa. L'IA le fait. Le personnel reste en salle."
         />
         <FeaturesGrid features={aiFeatures} columns={4} variant="alt" />
       </Section>
 
       <Section variant="alt">
         <SectionHeader
-          title="Pourquoi nous, pas "
-          gradientText="les autres"
-          description="Contrairement à ElevenLabs, Ringover ou Vapi : spécialisation restauration, carte dédiée, CA générée, imprévus du quotidien."
+          title="Pourquoi ça tient "
+          gradientText="en restauration"
+          description="Pas un outil générique : une ligne, une carte, un service. Moins de stress, plus de clients traités."
         />
         <FeaturesGrid features={integrations} columns={3} />
       </Section>
 
       <CTASection
-        title="Prêt à récupérer le CA "
-        gradientText="des appels manqués"
-        description="Demandez une démonstration et testez avec un abonnement dès 60€/mois."
+        title="Rendre la salle "
+        gradientText="au personnel"
+        description="Demandez une démonstration. On vous montre le flux pendant un service. Offre beta à 150 €/mois."
         primaryButton="Demander une démonstration"
       />
     </PageContainer> 

@@ -1,28 +1,28 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Users, MessageCircle, BarChart3, Zap } from "lucide-react";
+import { Users, ClipboardList, Heart } from "lucide-react";
 import { useOptimizedAnimation } from "../../../hooks/useOptimizedAnimation";
 import "./HomeFeatures.scss";
 
 const HomeFeatures = () => {
   const features = [
     {
-      icon: <MessageCircle className="icon" />,
-      title: "Plus d'appels manqués",
-      description:
-        "Accueil téléphonique 24/7. L'IA répond à chaque appel et ne laisse plus passer une commande ou une réservation.",
-    },
-    {
       icon: <Users className="icon" />,
-      title: "Carte et menus personnalisables",
+      title: "La salle reste prioritaire",
       description:
-        "Interface pensée pour la restauration : composition des sandwichs, plats, suppléments. L'IA a accès à votre carte pour répondre avec précision.",
+        "Plus besoin d'interrompre un service pour décrocher. L'équipe se concentre sur les tables, l'assistant gère la ligne.",
     },
     {
-      icon: <Zap className="icon" />,
-      title: "Réservations, commandes et imprévus",
+      icon: <ClipboardList className="icon" />,
+      title: "Commandes et réservations posées",
       description:
-        "Prise de réservations et commandes via l'interface. Gestion des imprévus : chaise haute, accueil PMR.",
+        "L'assistant prend l'appel, connaît votre carte, et écrit la commande ou la réservation dans l'application. Vous pilotez, sans courir.",
+    },
+    {
+      icon: <Heart className="icon" />,
+      title: "Moins de stress, clients mieux servis",
+      description:
+        "Ceux en salle ont toute l'attention. Ceux au téléphone ont une réponse. Productivité et satisfaction, sans charger le personnel.",
     },
   ];
 
@@ -33,12 +33,12 @@ const HomeFeatures = () => {
       <div className="features-content">
         <motion.div {...headerAnimation} className="features-header">
           <h2 className="features-title">
-            Une solution <span className="text-gradient">pensée pour la restauration</span>
+            On ne vend pas un robot.{" "}
+            <span className="text-gradient">On rend le service tenable.</span>
           </h2>
           <p className="features-description">
-            Comprendre les besoins et contraintes des restaurateurs, ce que les
-            outils génériques (ElevenLabs, Ringover, Vapi) ne font pas. Une IA
-            entraînée sur le cas d'usage des restaurants.
+            L&apos;application centralise commandes et réservations. L&apos;assistant
+            vocal tient la ligne. Le personnel priorise la salle, en sérénité.
           </p>
         </motion.div>
 

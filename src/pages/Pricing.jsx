@@ -16,18 +16,18 @@ import {
 import { usePricingData } from "../hooks/usePricingData";
 
 const Pricing = () => {
-  const { plans, addons, faqs } = usePricingData();
+  const { visiblePlans, addons, faqs } = usePricingData();
 
   return (
     <PageContainer>
       <Hero
-        title="Tarifs "
-        gradientText="transparents"
-        description="Abonnement mensuel avec minutes d'appel incluses. Testez avec L'Echauffement dès 60€/mois, ou choisissez le volume adapté à votre activité."
+        title="Un abonnement pour "
+        gradientText="rendre la salle au service"
+        description="Pendant la beta, une seule offre : 150 €/mois, 1300 minutes, 10 appels simultanés, support prioritaire pour vos retours."
       />
 
       <Section variant="alt">
-        <PricingGrid plans={plans} />
+        <PricingGrid plans={visiblePlans} />
       </Section>
 
       {addons.length > 0 && (
@@ -51,9 +51,9 @@ const Pricing = () => {
       </Section>
 
       <CTASection
-        title="Prêt à "
-        gradientText="récupérer le CA perdu"
-        description="Demandez une démonstration et testez l'accueil téléphonique 24/7 dès 60€/mois."
+        title="Moins de stress, "
+        gradientText="plus de clients servis"
+        description="Demandez une démonstration. On vous montre la ligne, la salle, et ce qui arrive dans l'application. Offre beta à 150 €/mois."
         primaryButton="Demander une démonstration"
         secondaryButton="Parler à un expert"
       />

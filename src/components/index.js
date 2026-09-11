@@ -14,6 +14,7 @@ export { default as PageContainer } from "./Shared/PageContainer/PageContainer.j
 // Composants Home
 export { default as HomeHero } from "./Home/HomeHero/HomeHero.jsx";
 export { default as HomeFeatures } from "./Home/HomeFeatures/HomeFeatures.jsx";
+export { default as HomeRoiSimulator } from "./Home/HomeRoiSimulator/HomeRoiSimulator.jsx";
 export { default as HomeCTA } from "./Home/HomeCTA/HomeCTA.jsx";
 
 // Composants Services

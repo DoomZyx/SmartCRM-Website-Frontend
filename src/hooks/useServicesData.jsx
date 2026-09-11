@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Phone,
-  MessageCircle,
   BarChart3,
   UtensilsCrossed,
   Shield,
@@ -17,69 +16,69 @@ export const useServicesData = () => {
   const crmFeatures = [
     {
       icon: <UtensilsCrossed className="icon" />,
-      title: "Carte et menus à votre image",
+      title: "Carte à votre image",
       description:
-        "Personnalisez votre carte : composition des sandwichs, plats, suppléments. L'IA a accès à tout pour répondre précisément aux clients.",
+        "Plats, compositions, suppléments. L'assistant s'appuie sur votre carte pour répondre juste, sans interrompre la salle.",
     },
     {
       icon: <ClipboardList className="icon" />,
-      title: "Réservations et commandes",
+      title: "Commandes et réservations",
       description:
-        "Prise de réservations et commandes via l'interface web. Tout centralisé.",
+        "Tout arrive dans l'application. L'équipe valide et enchaîne, au lieu de jongler avec le téléphone.",
     },
     {
       icon: <BarChart3 className="icon" />,
-      title: "CA générée par l'assistant",
+      title: "CA des appels rattrapés",
       description:
-        "Suivez les réservations et les commandes prises automatiquement par l'assistant vocal intelligent.",
+        "Chaque appel pris est une commande ou une table possible. Vous voyez ce que l'assistant a écrit pendant que vous serviez.",
     },
   ];
 
   const aiFeatures = [
     {
       icon: <Phone className="icon" />,
-      title: "Accueil téléphonique 24/7",
+      title: "La ligne ne sonne plus dans la salle",
       description:
-        "Plus d'appels manqués. L'IA répond à chaque appel, même en coup de feu.",
+        "L'assistant décroche 24/7. En coup de feu, personne n'abandonne une table pour le standard.",
     },
     {
       icon: <Bot className="icon" />,
-      title: "IA entraînée restauration",
+      title: "Entraîné restauration",
       description:
-        "Pas un outil générique : l'IA comprend les besoins et contraintes des restaurateurs (horaires, capacité, imprévus).",
+        "Horaires, capacité, emporter, imprévus. Pas un standard générique : il parle comme votre établissement.",
     },
     {
       icon: <Heart className="icon" />,
-      title: "Gestion des imprévus",
+      title: "Imprévus du quotidien",
       description:
-        "Chaise haute, accueil des personnes en mobilité réduite. L'IA gère les demandes du quotidien.",
+        "Chaise haute, PMR, allergie. L'assistant les note. L'équipe les traite quand elle a les mains libres.",
     },
     {
       icon: <Shield className="icon" />,
-      title: "Disponibilité et fiabilité",
+      title: "Sérénité de l'équipe",
       description:
-        "Solution dédiée avec disponibilité 24/7. Réduisez le stress et ne perdez plus de CA sur les appels.",
+        "Moins de pression sur le personnel, plus d'attention aux clients présents. C'est ça que l'on vend.",
     },
   ];
 
   const integrations = [
     {
       icon: <Smartphone className="icon" />,
-      title: "Application web",
+      title: "Une appli pour piloter, pas pour courir",
       description:
-        "Interface et architecture conçues pour personnaliser la carte et piloter l'assistant vocal.",
+        "Carte, commandes, réservations. Vous voyez ce qui rentre. La salle reste le centre de gravité.",
     },
     {
       icon: <Clock className="icon" />,
-      title: "Abonnement mensuel",
+      title: "Beta à 150 €/mois",
       description:
-        "Minutes d'appel incluses par mois. Formule d'essai à petit budget pour tester sans s'engager.",
+        "1300 minutes, 10 appels simultanés, support prioritaire pour vos retours et les ajustements.",
     },
     {
       icon: <TrendingUp className="icon" />,
-      title: "Différenciation concurrents",
+      title: "Fait pour un restaurant, pas pour un call center",
       description:
-        "Contrairement à ElevenLabs, Ringover ou Vapi, une solution spécialisée restauration, pas générique.",
+        "Les outils génériques gèrent une voix. Nous gérons le service : salle, téléphone, ticket.",
     },
   ];
 
