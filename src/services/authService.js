@@ -4,7 +4,9 @@
  * Les URLs sont en placeholder tant que le backend n'est pas prêt.
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+import { apiBaseUrl } from "./apiBase";
+
+const API_BASE_URL = apiBaseUrl();
 
 /**
  * Redirige l'utilisateur vers l'endpoint backend qui lance le flow OAuth Google.
@@ -13,12 +15,25 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
  */
 export const loginWithGoogle = () => {
   if (!API_BASE_URL) return;
-  window.location.href = `${API_BASE_URL}/api/auth/google`;
+  window.location.href = `${API_BASE_URL}/api/auth/google?return=site`;
 };
 
 export const getGoogleLoginUrl = () => {
   if (!API_BASE_URL) return null;
-  return `${API_BASE_URL}/api/auth/google`;
+  return `${API_BASE_URL}/api/auth/google?return=site`;
+};
+
+export const resendAccessEmailApi = async () => {
+  if (!API_BASE_URL) throw new Error("API non configurée.");
+  const response = await fetch(`${API_BASE_URL}/api/auth/resend-access`, {
+    method: "POST",
+    credentials: "include",
+  });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(data.message || data.error || "Impossible d'envoyer le lien");
+  }
+  return data;
 };
 
 /**

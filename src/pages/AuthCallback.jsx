@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { getCurrentUser } from "../services/authService";
+import { canOpenDashboard } from "../services/syncDashboardSession";
 import "./AuthCallback.scss";
 
 /**
@@ -22,11 +23,13 @@ const AuthCallback = () => {
       if (cancelled) return;
       if (apiUser) {
         setAuth(apiUser);
-        const hasSubscriptionOrInstance =
-          !!apiUser.planId || !!apiUser.smartcrmInstanceId;
-        navigate(hasSubscriptionOrInstance ? "/mon-espace" : "/onboarding", {
-          replace: true,
-        });
+        if (canOpenDashboard(apiUser)) {
+          navigate("/app", { replace: true });
+        } else {
+          navigate(apiUser.planId || apiUser.smartcrmInstanceId ? "/mon-espace" : "/onboarding", {
+            replace: true,
+          });
+        }
       } else {
         setError("Échec de la connexion ou session expirée. Réessayez.");
       }
@@ -40,11 +43,13 @@ const AuthCallback = () => {
 
   useEffect(() => {
     if (isAuthenticated && user) {
-      const hasSubscriptionOrInstance =
-        !!user.planId || !!user.smartcrmInstanceId;
-      navigate(hasSubscriptionOrInstance ? "/mon-espace" : "/onboarding", {
-        replace: true,
-      });
+      if (canOpenDashboard(user)) {
+        navigate("/app", { replace: true });
+      } else {
+        navigate(user.planId || user.smartcrmInstanceId ? "/mon-espace" : "/onboarding", {
+          replace: true,
+        });
+      }
     }
   }, [isAuthenticated, user, navigate]);
 

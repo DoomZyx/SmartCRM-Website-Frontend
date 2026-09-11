@@ -1,6 +1,8 @@
 import { useState } from "react";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+import { apiBaseUrl } from "../services/apiBase";
+
+const API_BASE_URL = apiBaseUrl();
 
 /**
  * Appelle le backend pour créer une session Stripe Checkout et redirige vers l'URL renvoyée.

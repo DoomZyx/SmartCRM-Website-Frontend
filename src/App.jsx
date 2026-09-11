@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
   Navigate,
+  Outlet,
   useLocation,
   useNavigate,
   useSearchParams,
@@ -31,10 +32,11 @@ import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
 import ServiceIATelephonique from "./pages/ServiceIATelephonique";
 import FonctionnalitesPrevues from "./pages/FonctionnalitesPrevues";
 import Onboarding from "./pages/Onboarding";
+import { apiBaseUrl } from "./services/apiBase";
 
-/** Redirige vers le callback backend si Google a renvoyé l'utilisateur sur le frontend (mauvaise config redirect URI). */
-function GoogleCallbackRedirect() {
-  const apiBase = import.meta.env.VITE_API_BASE_URL || "";
+/** Redirige vers le callback backend si Google a renvoyé l'utilisateur sur le frontend. */
+export function GoogleCallbackRedirect() {
+  const apiBase = apiBaseUrl();
   useEffect(() => {
     if (apiBase) {
       window.location.href = `${apiBase}/api/auth/google/callback${window.location.search}`;
@@ -44,7 +46,7 @@ function GoogleCallbackRedirect() {
 }
 
 /** /login : ouvre la modale de connexion avec intent (planId, from) puis redirige vers /. */
-function LoginRedirect() {
+export function LoginRedirect() {
   const location = useLocation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -63,7 +65,7 @@ function LoginRedirect() {
   return null;
 }
 
-function AppContent() {
+export function WebsiteLayout() {
   const { isDemoModalOpen, closeDemoModal } = useDemoModal();
   const { isLoginModalOpen, closeLoginModal } = useLoginModal();
 
@@ -71,34 +73,46 @@ function AppContent() {
     <div className="App">
       <ScrollToTop />
       <Header />
-      <Routes>
+      <Outlet />
+      <Footer />
+      <CookieBanner />
+      <DemoModal isOpen={isDemoModalOpen} onClose={closeDemoModal} />
+      <LoginModal isOpen={isLoginModalOpen} onClose={closeLoginModal} />
+    </div>
+  );
+}
+
+export function WebsiteProviders({ children }) {
+  return (
+    <ErrorBoundary>
+      <AnimationProvider>
+        <AuthProvider>
+          <DemoModalProvider>
+            <LoginModalProvider>{children}</LoginModalProvider>
+          </DemoModalProvider>
+        </AuthProvider>
+      </AnimationProvider>
+    </ErrorBoundary>
+  );
+}
+
+function AppContent() {
+  return (
+    <Routes>
+      <Route element={<WebsiteLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/tarifs" element={<Navigate to="/pricing" replace />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/mentions-legales" element={<MentionsLegales />} />
-        <Route
-          path="/politique-confidentialite"
-          element={<PolitiqueConfidentialite />}
-        />
-        <Route
-          path="/service-ia-telephonique"
-          element={<ServiceIATelephonique />}
-        />
-        <Route
-          path="/fonctionnalites-prevues"
-          element={<FonctionnalitesPrevues />}
-        />
+        <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
+        <Route path="/service-ia-telephonique" element={<ServiceIATelephonique />} />
+        <Route path="/fonctionnalites-prevues" element={<FonctionnalitesPrevues />} />
         <Route path="/login" element={<LoginRedirect />} />
-        <Route
-          path="api/auth/google"
-          element={<Navigate to="/login" replace />}
-        />
+        <Route path="api/auth/google" element={<Navigate to="/login" replace />} />
         <Route path="api/auth/callback" element={<AuthCallback />} />
-        <Route
-          path="/api/auth/google/callback"
-          element={<GoogleCallbackRedirect />}
-        />
+        <Route path="/api/auth/google/callback" element={<GoogleCallbackRedirect />} />
         <Route
           path="/mon-espace"
           element={
@@ -115,29 +129,17 @@ function AppContent() {
             </ProtectedRoute>
           }
         />
-      </Routes>
-      <Footer />
-      <CookieBanner />
-      <DemoModal isOpen={isDemoModalOpen} onClose={closeDemoModal} />
-      <LoginModal isOpen={isLoginModalOpen} onClose={closeLoginModal} />
-    </div>
+      </Route>
+    </Routes>
   );
 }
 
 function App() {
   return (
     <Router>
-      <ErrorBoundary>
-        <AnimationProvider>
-          <AuthProvider>
-            <DemoModalProvider>
-              <LoginModalProvider>
-                <AppContent />
-              </LoginModalProvider>
-            </DemoModalProvider>
-          </AuthProvider>
-        </AnimationProvider>
-      </ErrorBoundary>
+      <WebsiteProviders>
+        <AppContent />
+      </WebsiteProviders>
     </Router>
   );
 }

@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { CreditCard, LayoutDashboard } from "lucide-react";
 import { PageContainer, Hero, Section } from "../components";
 import RestaurateurProfilForm from "../components/RestaurateurProfil/RestaurateurProfilForm";
 import { useAuth } from "../hooks/useAuth";
 import { usePricingData } from "../hooks/usePricingData";
+import { resendAccessEmailApi } from "../services/authService";
+import { canOpenDashboard } from "../services/syncDashboardSession";
 import "./MonEspace.scss";
-
-const APP_URL = import.meta.env.VITE_APP_URL || "/app/";
 
 const MonEspace = () => {
   const { user } = useAuth();
   const { plans } = usePricingData();
+  const [resendError, setResendError] = useState("");
+  const [resendOk, setResendOk] = useState(false);
+  const [resending, setResending] = useState(false);
 
   const subscriptionPlan = user?.planId
     ? plans.find((p) => p.id === user.planId)
@@ -19,7 +23,8 @@ const MonEspace = () => {
     ? subscriptionPlan.name
     : user?.subscriptionPlan || null;
   const displaySubscription = subscriptionLabel || "Aucun abonnement actif";
-  const hasAppAccess = Boolean(user?.smartcrmInstanceId);
+  const hasAppAccess = canOpenDashboard(user);
+  const waitingForToken = Boolean(user?.hasActiveSubscription || user?.planId) && !hasAppAccess;
   const dossierPending =
     Boolean(user?.planId) &&
     !user?.smartcrmInstanceId &&
@@ -60,14 +65,52 @@ const MonEspace = () => {
                 <p className="mon-espace-app-access-desc">
                   Accédez à votre tableau de bord, commandes et réservations.
                 </p>
-                <a
-                  href={APP_URL}
-                  className="mon-espace-app-access-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link to="/app" className="mon-espace-app-access-link">
                   Ouvrir l&apos;application
-                </a>
+                </Link>
+              </div>
+            </div>
+          )}
+
+          {waitingForToken && (
+            <div className="mon-espace-instance-required">
+              <LayoutDashboard className="mon-espace-instance-required-icon" />
+              <div className="mon-espace-instance-required-content">
+                <h3 className="mon-espace-instance-required-title">
+                  Lien d&apos;accès
+                </h3>
+                <p className="mon-espace-instance-required-desc">
+                  Un e-mail avec un lien d&apos;accès a été envoyé après le paiement.
+                  Ouvrez-le pour activer le tableau de bord.
+                </p>
+                {resendOk && (
+                  <p className="mon-espace-instance-required-desc">
+                    Un nouveau lien a été envoyé.
+                  </p>
+                )}
+                {resendError && (
+                  <p className="mon-espace-instance-required-desc">{resendError}</p>
+                )}
+                <button
+                  type="button"
+                  className="mon-espace-app-access-link"
+                  disabled={resending}
+                  onClick={async () => {
+                    setResendError("");
+                    setResendOk(false);
+                    setResending(true);
+                    try {
+                      await resendAccessEmailApi();
+                      setResendOk(true);
+                    } catch (err) {
+                      setResendError(err.message);
+                    } finally {
+                      setResending(false);
+                    }
+                  }}
+                >
+                  {resending ? "Envoi..." : "Renvoyer le lien d'accès"}
+                </button>
               </div>
             </div>
           )}

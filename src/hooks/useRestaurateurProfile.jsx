@@ -1,7 +1,9 @@
 import { useState, useCallback } from "react";
 import { submitOnboardingDossierApi } from "../services/authService";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+import { apiBaseUrl } from "../services/apiBase";
+
+const API_BASE_URL = apiBaseUrl();
 
 /**
  * Hook pour le profil restaurateur : chargement et soumission.

@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useCallback } from "react";
 import { getCurrentUser, logoutApi } from "../services/authService";
+import { syncDashboardSession } from "../services/syncDashboardSession";
 
 export const AuthContext = createContext(null);
 
@@ -24,8 +25,10 @@ export const AuthProvider = ({ children }) => {
     try {
       if (userData) {
         localStorage.setItem(STORAGE_KEY_USER, JSON.stringify(userData));
+        syncDashboardSession(userData);
       } else {
         localStorage.removeItem(STORAGE_KEY_USER);
+        syncDashboardSession(null);
       }
     } catch (e) {
       logAuthError("setAuth localStorage", e);
@@ -51,6 +54,7 @@ export const AuthProvider = ({ children }) => {
     setAuthError(null);
     try {
       localStorage.removeItem(STORAGE_KEY_USER);
+      syncDashboardSession(null);
     } catch (e) {
       logAuthError("logout localStorage", e);
     }
@@ -77,6 +81,7 @@ export const AuthProvider = ({ children }) => {
           setAuthError(null);
           try {
             localStorage.setItem(STORAGE_KEY_USER, JSON.stringify(apiUser));
+            syncDashboardSession(apiUser);
           } catch (e) {
             logAuthError("init localStorage set", e);
           }
@@ -85,6 +90,7 @@ export const AuthProvider = ({ children }) => {
           setAuthError(null);
           try {
             localStorage.removeItem(STORAGE_KEY_USER);
+            syncDashboardSession(null);
           } catch (e) {
             logAuthError("init localStorage remove", e);
           }

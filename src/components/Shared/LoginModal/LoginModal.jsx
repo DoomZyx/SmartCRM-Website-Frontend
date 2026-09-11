@@ -8,6 +8,7 @@ import {
   registerApi,
   loginWithGoogle,
 } from "../../../services/authService";
+import { canOpenDashboard } from "../../../services/syncDashboardSession";
 import "./LoginModal.scss";
 
 const LoginModal = ({ isOpen, onClose }) => {
@@ -36,6 +37,10 @@ const LoginModal = ({ isOpen, onClose }) => {
     onClose();
     if (loginIntent?.planId) {
       navigate(`/onboarding?planId=${loginIntent.planId}`, { replace: true });
+    } else if (canOpenDashboard(user) && loginIntent?.from?.pathname?.startsWith("/app")) {
+      navigate(loginIntent.from.pathname, { replace: true });
+    } else if (canOpenDashboard(user)) {
+      navigate("/app", { replace: true });
     } else if (loginIntent?.from?.pathname) {
       navigate(loginIntent.from.pathname, { replace: true });
     } else {

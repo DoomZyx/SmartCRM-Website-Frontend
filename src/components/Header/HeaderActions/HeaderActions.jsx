@@ -8,7 +8,7 @@ import "./HeaderActions.scss";
 const HeaderActions = () => {
   const { openDemoModal } = useDemoModal();
   const { openLoginModal } = useLoginModal();
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, user } = useAuth();
 
   return (
     <div className="header-actions">
@@ -17,6 +17,11 @@ const HeaderActions = () => {
           <Link to="/mon-espace" className="btn btn-secondary header-link-btn">
             Mon espace
           </Link>
+          {(user?.isPlatformAdmin || user?.accessUnlocked) && (
+            <Link to="/app" className="btn btn-secondary header-link-btn">
+              Tableau de bord
+            </Link>
+          )}
           <button
             type="button"
             className="btn btn-ghost-header"
