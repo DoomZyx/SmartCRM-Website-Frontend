@@ -16,23 +16,17 @@ const MonEspace = () => {
   const [resendOk, setResendOk] = useState(false);
   const [resending, setResending] = useState(false);
 
-  const subscriptionPlan = user?.planId
-    ? plans.find((p) => p.id === user.planId)
-    : null;
-  const subscriptionLabel = subscriptionPlan
-    ? subscriptionPlan.name
-    : user?.subscriptionPlan || null;
+  const subscriptionLabel =
+    user?.planName ||
+    (user?.planId ? plans.find((p) => p.id === user.planId)?.name : null) ||
+    user?.subscriptionPlan ||
+    null;
   const displaySubscription = subscriptionLabel || "Aucun abonnement actif";
   const hasAppAccess = canOpenDashboard(user);
-  const waitingForToken = Boolean(user?.hasActiveSubscription || user?.planId) && !hasAppAccess;
-  const dossierPending =
-    Boolean(user?.planId) &&
-    !user?.smartcrmInstanceId &&
-    Boolean(user?.twilioDocsSubmittedAt);
-  const needsDossier =
-    Boolean(user?.planId) &&
-    !user?.smartcrmInstanceId &&
-    !user?.twilioDocsSubmittedAt;
+  const hasTenant = Boolean(user?.smartcrmInstanceId || user?.planSlug || user?.hasActiveSubscription);
+  const waitingForToken = Boolean(user?.hasActiveSubscription) && !hasAppAccess;
+  const dossierPending = hasTenant && Boolean(user?.twilioDocsSubmittedAt) && !hasAppAccess;
+  const needsDossier = hasTenant && !user?.twilioDocsSubmittedAt;
 
   return (
     <PageContainer>

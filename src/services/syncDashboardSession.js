@@ -21,6 +21,7 @@ export function syncDashboardSession(user) {
       isPlatformAdmin: Boolean(user.isPlatformAdmin),
       planId: user.planId || null,
       planSlug: user.planSlug || null,
+      planName: user.planName || null,
       hasActiveSubscription: Boolean(user.hasActiveSubscription),
       accessUnlocked: Boolean(user.accessUnlocked || user.dashboardUnlockedAt),
       smartcrmInstanceId: tenantId || null,

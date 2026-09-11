@@ -32,6 +32,7 @@ import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
 import ServiceIATelephonique from "./pages/ServiceIATelephonique";
 import FonctionnalitesPrevues from "./pages/FonctionnalitesPrevues";
 import Onboarding from "./pages/Onboarding";
+import PlatformAdmin from "./pages/PlatformAdmin";
 import { apiBaseUrl } from "./services/apiBase";
 
 /** Redirige vers le callback backend si Google a renvoyé l'utilisateur sur le frontend. */
@@ -126,6 +127,14 @@ function AppContent() {
           element={
             <ProtectedRoute>
               <Onboarding />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin-plateforme"
+          element={
+            <ProtectedRoute>
+              <PlatformAdmin />
             </ProtectedRoute>
           }
         />

@@ -6,7 +6,7 @@ import { useCheckout } from "../hooks/useCheckout";
 import "./Onboarding.scss";
 
 const Onboarding = () => {
-  const { user } = useAuth();
+  const { user, refreshUser } = useAuth();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const planIdParam = searchParams.get("planId");
@@ -16,17 +16,28 @@ const Onboarding = () => {
   const [error, setError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { createCheckoutSession } = useCheckout();
+  const { startBetaAccess, createCheckoutSession } = useCheckout();
   const email = user?.email || "";
 
-  const handleGoToSpace = () => {
-    navigate("/mon-espace");
+  const handleGoToSpace = async () => {
+    setError(null);
+    setIsSubmitting(true);
+    try {
+      await startBetaAccess();
+      await refreshUser();
+      navigate("/mon-espace", { replace: true });
+    } catch (err) {
+      setError(err.message || "Une erreur est survenue.");
+      setIsSubmitting(false);
+    }
   };
 
   const handleContinueToCheckout = async () => {
     setError(null);
     setIsSubmitting(true);
     try {
+      await startBetaAccess();
+      await refreshUser();
       await createCheckoutSession(planId);
     } catch (err) {
       setError(err.message || "Une erreur est survenue.");
@@ -39,16 +50,17 @@ const Onboarding = () => {
     return (
       <PageContainer>
         <Hero
-          title="Avant le paiement"
-          gradientText="mySartFood"
-          description="Vérifiez votre adresse e-mail, puis poursuivez vers le paiement sécurisé."
+          title="Avant de continuer"
+          gradientText="mySmartFood"
+          description="Un abonnement beta unique est créé pour votre restaurant. Le paiement passe par Stripe en mode test, puis vous renseignez l'établissement."
         />
         <Section variant="alt">
           <div className="onboarding-card">
-            <h2 className="onboarding-title">Paiement</h2>
+            <h2 className="onboarding-title">Paiement test Stripe</h2>
             <p className="onboarding-text">
-              Votre adresse e-mail sera l&apos;identifiant principal pour
-              accéder à l&apos;application.
+              L&apos;établissement est d&apos;abord provisionné (accès beta). Vous êtes
+              ensuite redirigé vers Stripe Checkout en sandbox. Vous pourrez
+              renseigner les informations du restaurant dans Mon espace.
             </p>
             <div className="onboarding-form">
               <div className="onboarding-form-group">
@@ -74,7 +86,7 @@ const Onboarding = () => {
                 onClick={handleContinueToCheckout}
               >
                 {isSubmitting
-                  ? "Redirection vers le paiement..."
+                  ? "Redirection vers Stripe..."
                   : "Continuer vers le paiement"}
               </button>
             </div>
@@ -99,16 +111,22 @@ const Onboarding = () => {
           </p>
           <p className="onboarding-email">{email || "votre adresse e-mail"}</p>
           <p className="onboarding-text">
-            Lorsque vous achèterez un abonnement, cette adresse e-mail sera
-            utilisée comme identifiant principal pour accéder à
+            Lorsque vous continuerez, un accès beta sera créé pour votre restaurant.
+            Cette adresse e-mail restera l&apos;identifiant principal de
             l&apos;application mySmartFood.
           </p>
+          {error && (
+            <p className="onboarding-form-error" role="alert">
+              {error}
+            </p>
+          )}
           <button
             type="button"
             className="btn btn-primary onboarding-button"
+            disabled={isSubmitting}
             onClick={handleGoToSpace}
           >
-            Continuer vers mon espace
+            {isSubmitting ? "Activation de l'accès..." : "Continuer vers mon espace"}
           </button>
         </div>
       </Section>

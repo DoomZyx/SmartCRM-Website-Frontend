@@ -30,7 +30,7 @@ export const useCheckout = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || "Impossible de créer la session de paiement");
+        throw new Error(data.error || data.message || "Impossible de créer la session de paiement");
       }
 
       if (data.url) {
@@ -46,10 +46,33 @@ export const useCheckout = () => {
     }
   };
 
+  const startBetaAccess = async () => {
+    if (!API_BASE_URL) return;
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/checkout/start-beta`, {
+        method: "POST",
+        credentials: "include",
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(data.error || data.message || "Impossible d'activer l'accès beta");
+      }
+      return data;
+    } catch (err) {
+      setError(err.message);
+      throw err;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const clearError = () => setError(null);
 
   return {
     createCheckoutSession,
+    startBetaAccess,
     isLoading,
     error,
     clearError,

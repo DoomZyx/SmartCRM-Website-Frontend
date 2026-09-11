@@ -9,24 +9,26 @@ const HeaderActions = () => {
   const { openDemoModal } = useDemoModal();
   const { openLoginModal } = useLoginModal();
   const { isAuthenticated, logout, user } = useAuth();
+  const showDashboard = Boolean(user?.isPlatformAdmin || user?.accessUnlocked);
 
   return (
-    <div className="header-actions">
+    <div className={`header-actions${isAuthenticated ? " header-actions--authenticated" : ""}`}>
       {isAuthenticated ? (
         <>
-          <Link to="/mon-espace" className="btn btn-secondary header-link-btn">
+          <Link to="/mon-espace" className="header-text-link">
             Mon espace
           </Link>
-          {(user?.isPlatformAdmin || user?.accessUnlocked) && (
-            <Link to="/app" className="btn btn-secondary header-link-btn">
+          {user?.isPlatformAdmin && (
+            <Link to="/admin-plateforme" className="header-text-link">
+              Onboarding
+            </Link>
+          )}
+          {showDashboard && (
+            <Link to="/app" className="header-text-link">
               Tableau de bord
             </Link>
           )}
-          <button
-            type="button"
-            className="btn btn-ghost-header"
-            onClick={logout}
-          >
+          <button type="button" className="header-text-link header-text-link--button" onClick={logout}>
             Déconnexion
           </button>
         </>
@@ -39,8 +41,9 @@ const HeaderActions = () => {
           Se connecter
         </button>
       )}
-      <button className="btn btn-primary" onClick={openDemoModal}>
-        Demander une démo
+      <button type="button" className="btn btn-primary header-demo-btn" onClick={openDemoModal}>
+        <span className="header-demo-btn__full">Demander une démo</span>
+        <span className="header-demo-btn__short">Démo</span>
       </button>
     </div>
   );

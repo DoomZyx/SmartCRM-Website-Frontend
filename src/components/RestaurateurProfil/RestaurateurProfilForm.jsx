@@ -51,8 +51,7 @@ const RestaurateurProfilForm = () => {
   } = useRestaurateurProfile();
 
   const needsDocSubmission =
-    Boolean(user?.planId) &&
-    !user?.smartcrmInstanceId &&
+    Boolean(user?.smartcrmInstanceId || user?.planSlug || user?.hasActiveSubscription) &&
     !user?.twilioDocsSubmittedAt;
 
   useEffect(() => {
@@ -103,6 +102,7 @@ const RestaurateurProfilForm = () => {
     e.preventDefault();
     try {
       await submitProfile(formData);
+      await refreshUser();
       setToast({ visible: true, message: "Informations enregistrées avec succès." });
     } catch (_) {
       // erreur gérée dans le hook

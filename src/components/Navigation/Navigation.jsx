@@ -1,64 +1,63 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { useDemoModal } from "../../contexts/DemoModalContext";
+import { useLoginModal } from "../../contexts/LoginModalContext";
+import { useAuth } from "../../hooks/useAuth";
 import "./Navigation.scss";
 
+const navItems = [
+  { name: "Accueil", path: "/" },
+  { name: "Nos Services", path: "/services" },
+  { name: "Tarifs", path: "/pricing" },
+  { name: "Contact", path: "/contact" },
+];
+
 const Navigation = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-  const menuRef = useRef(null);
-  const buttonRef = useRef(null);
 
-  const navItems = [
-    { name: "Accueil", path: "/" },
-    { name: "Nos Services", path: "/services" },
-    { name: "Tarifs", path: "/pricing" },
-    { name: "Contact", path: "/contact" },
-  ];
+  return (
+    <nav className="navigation">
+      <div className="nav-desktop">
+        {navItems.map((item) => (
+          <Link
+            key={item.name}
+            to={item.path}
+            className={`nav-link ${location.pathname === item.path ? "active" : ""}`}
+          >
+            {item.name}
+          </Link>
+        ))}
+      </div>
+    </nav>
+  );
+};
 
-  // Fermer le menu lors du changement de route
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [location.pathname]);
+export function MobileNavButton({ isOpen, onToggle, buttonRef }) {
+  return (
+    <button
+      ref={buttonRef}
+      type="button"
+      className="mobile-menu-button"
+      onClick={onToggle}
+      aria-label="Menu de navigation"
+      aria-expanded={isOpen}
+    >
+      {isOpen ? <X size={24} /> : <Menu size={24} />}
+    </button>
+  );
+}
 
-  // Fermer le menu lors du clic en dehors
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        isMenuOpen &&
-        menuRef.current &&
-        !menuRef.current.contains(event.target) &&
-        buttonRef.current &&
-        !buttonRef.current.contains(event.target)
-      ) {
-        setIsMenuOpen(false);
-      }
-    };
+export function MobileNavMenu({ isOpen, onClose, menuRef }) {
+  const location = useLocation();
+  const { openDemoModal } = useDemoModal();
+  const { openLoginModal } = useLoginModal();
+  const { isAuthenticated, logout, user } = useAuth();
 
-    // Empêcher le scroll quand le menu est ouvert
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+  if (!isOpen) return null;
 
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("touchstart", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("touchstart", handleClickOutside);
-      document.body.style.overflow = "unset";
-    };
-  }, [isMenuOpen]);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  // Composant du menu mobile
-  const MobileMenu = () => (
+  return createPortal(
     <div ref={menuRef} className="mobile-menu-overlay">
       <div className="mobile-menu-content">
         <div className="mobile-nav-links">
@@ -66,53 +65,67 @@ const Navigation = () => {
             <Link
               key={item.name}
               to={item.path}
-              className={`mobile-nav-link ${
-                location.pathname === item.path ? "active" : ""
-              }`}
-              onClick={() => setIsMenuOpen(false)}
+              className={`mobile-nav-link ${location.pathname === item.path ? "active" : ""}`}
+              onClick={onClose}
             >
               {item.name}
             </Link>
           ))}
+        </div>
+        <div className="mobile-nav-actions">
+          {isAuthenticated ? (
+            <>
+              <Link to="/mon-espace" className="mobile-nav-link" onClick={onClose}>
+                Mon espace
+              </Link>
+              {user?.isPlatformAdmin && (
+                <Link to="/admin-plateforme" className="mobile-nav-link" onClick={onClose}>
+                  Onboarding
+                </Link>
+              )}
+              {(user?.isPlatformAdmin || user?.accessUnlocked) && (
+                <Link to="/app" className="mobile-nav-link" onClick={onClose}>
+                  Tableau de bord
+                </Link>
+              )}
+              <button
+                type="button"
+                className="mobile-nav-link mobile-nav-link--button"
+                onClick={() => {
+                  onClose();
+                  logout();
+                }}
+              >
+                Déconnexion
+              </button>
+            </>
+          ) : (
+            <button
+              type="button"
+              className="mobile-nav-link mobile-nav-link--button"
+              onClick={() => {
+                onClose();
+                openLoginModal();
+              }}
+            >
+              Se connecter
+            </button>
+          )}
+          <button
+            type="button"
+            className="btn btn-primary mobile-nav-demo"
+            onClick={() => {
+              onClose();
+              openDemoModal();
+            }}
+          >
+            Demander une démo
+          </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
-
-  return (
-    <>
-      <nav className="navigation">
-        {/* Navigation Desktop */}
-        <div className="nav-desktop">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              to={item.path}
-              className={`nav-link ${
-                location.pathname === item.path ? "active" : ""
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          ref={buttonRef}
-          className="mobile-menu-button"
-          onClick={toggleMenu}
-          aria-label="Menu de navigation"
-          aria-expanded={isMenuOpen}
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </nav>
-
-      {/* Mobile Menu Portal */}
-      {isMenuOpen && createPortal(<MobileMenu />, document.body)}
-    </>
-  );
-};
+}
 
 export default Navigation;
