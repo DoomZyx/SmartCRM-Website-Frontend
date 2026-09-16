@@ -83,7 +83,11 @@ const LoginModal = ({ isOpen, onClose }) => {
   };
 
   const handleGoogleLogin = () => {
-    loginWithGoogle();
+    try {
+      loginWithGoogle();
+    } catch (err) {
+      setError(err.message || "Connexion Google impossible.");
+    }
   };
 
   const handleClose = useCallback(() => {

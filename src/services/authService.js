@@ -4,7 +4,15 @@
  * Les URLs sont en placeholder tant que le backend n'est pas prêt.
  */
 
-import { apiBaseUrl } from "./apiBase";
+import { apiBaseUrl, apiHref } from "./apiBase";
+
+function requireApiBase() {
+  const base = apiBaseUrl();
+  if (!base) {
+    throw new Error("API non configurée (VITE_API_BASE_URL).");
+  }
+  return base;
+}
 
 const API_BASE_URL = apiBaseUrl();
 
@@ -14,13 +22,13 @@ const API_BASE_URL = apiBaseUrl();
  * HttpOnly (token) et redirigera vers l'URL de callback du frontend (sans token dans l'URL).
  */
 export const loginWithGoogle = () => {
-  if (!API_BASE_URL) return;
-  window.location.href = `${API_BASE_URL}/api/auth/google?return=site`;
+  const base = requireApiBase();
+  window.location.assign(`${base}/api/auth/google?return=site`);
 };
 
 export const getGoogleLoginUrl = () => {
-  if (!API_BASE_URL) return null;
-  return `${API_BASE_URL}/api/auth/google?return=site`;
+  if (!apiBaseUrl()) return null;
+  return apiHref("/api/auth/google?return=site");
 };
 
 export const resendAccessEmailApi = async () => {

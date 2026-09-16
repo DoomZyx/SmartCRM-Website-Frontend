@@ -36,14 +36,32 @@ import PlatformAdmin from "./pages/PlatformAdmin";
 import { PLATFORM_ADMIN_PATH } from "./utils/platformAdminPath";
 import { apiBaseUrl } from "./services/apiBase";
 
+function redirectToApi(pathWithSearch) {
+  const apiBase = apiBaseUrl();
+  if (!apiBase) return;
+  const target = `${apiBase}${pathWithSearch}`;
+  try {
+    if (new URL(target).origin === window.location.origin) return;
+  } catch {
+    return;
+  }
+  window.location.assign(target);
+}
+
 /** Redirige vers le callback backend si Google a renvoyé l'utilisateur sur le frontend. */
 export function GoogleCallbackRedirect() {
-  const apiBase = apiBaseUrl();
   useEffect(() => {
-    if (apiBase) {
-      window.location.href = `${apiBase}/api/auth/google/callback${window.location.search}`;
-    }
-  }, [apiBase]);
+    redirectToApi(`/api/auth/google/callback${window.location.search}`);
+  }, []);
+  return <div>Redirection...</div>;
+}
+
+/** Evite que la SPA avale /api/auth/google et redirige vers /login. */
+export function GoogleStartRedirect() {
+  useEffect(() => {
+    const search = window.location.search || "?return=site";
+    redirectToApi(`/api/auth/google${search}`);
+  }, []);
   return <div>Redirection...</div>;
 }
 
@@ -112,7 +130,8 @@ function AppContent() {
         <Route path="/service-ia-telephonique" element={<ServiceIATelephonique />} />
         <Route path="/fonctionnalites-prevues" element={<FonctionnalitesPrevues />} />
         <Route path="/login" element={<LoginRedirect />} />
-        <Route path="api/auth/google" element={<Navigate to="/login" replace />} />
+        <Route path="api/auth/google" element={<GoogleStartRedirect />} />
+        <Route path="/api/auth/google" element={<GoogleStartRedirect />} />
         <Route path="api/auth/callback" element={<AuthCallback />} />
         <Route path="/api/auth/google/callback" element={<GoogleCallbackRedirect />} />
         <Route
