@@ -23,6 +23,8 @@ const defaultFormData = {
   nombreCouverts: "",
   typeCuisine: "",
   twilioNumberUsage: "",
+  accessibilitePmr: "",
+  nombreChaisesBebe: "",
 };
 
 const MAX_FILE_SIZE_MB = 5;
@@ -85,6 +87,14 @@ const RestaurateurProfilForm = () => {
         nombreCouverts: profile.nombreCouverts != null ? String(profile.nombreCouverts) : "",
         typeCuisine: profile.typeCuisine ?? "",
         twilioNumberUsage: profile.twilioNumberUsage ?? "",
+        accessibilitePmr:
+          profile.accessibilitePmr === true
+            ? "yes"
+            : profile.accessibilitePmr === false
+              ? "no"
+              : "",
+        nombreChaisesBebe:
+          profile.nombreChaisesBebe != null ? String(profile.nombreChaisesBebe) : "",
       }));
     }
   }, [profile]);
@@ -330,6 +340,41 @@ const RestaurateurProfilForm = () => {
           className="form-input"
           placeholder="Ex: 50"
         />
+      </div>
+
+      <div className="form-row">
+        <div className="form-group">
+          <label htmlFor="accessibilitePmr" className="form-label">
+            Accès personnes à mobilité réduite (PMR)
+          </label>
+          <select
+            id="accessibilitePmr"
+            name="accessibilitePmr"
+            value={formData.accessibilitePmr}
+            onChange={handleChange}
+            className="form-input"
+          >
+            <option value="">Non renseigné</option>
+            <option value="yes">Oui</option>
+            <option value="no">Non</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label htmlFor="nombreChaisesBebe" className="form-label">
+            Nombre de chaises bébé
+          </label>
+          <input
+            type="number"
+            id="nombreChaisesBebe"
+            name="nombreChaisesBebe"
+            value={formData.nombreChaisesBebe}
+            onChange={handleChange}
+            min={0}
+            max={999}
+            className="form-input"
+            placeholder="Ex: 4"
+          />
+        </div>
       </div>
 
       <div className="form-group">

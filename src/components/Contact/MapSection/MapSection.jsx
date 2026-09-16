@@ -1,17 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
+import { useOptimizedAnimation } from "../../../hooks/useOptimizedAnimation";
 import "./MapSection.scss";
 
 const MapSection = () => {
+  const animationProps = useOptimizedAnimation(0);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
-      className="map-section"
-    >
+    <motion.div {...animationProps} className="map-section">
       <div className="map-card">
         <h2 className="map-title">
           Notre <span className="text-gradient">Localisation</span>

@@ -2,10 +2,12 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useDemoModal } from "../../../contexts/DemoModalContext";
+import { useOptimizedAnimation } from "../../../hooks/useOptimizedAnimation";
 import "./HomeHero.scss";
 
 const HomeHero = () => {
   const { openDemoModal } = useDemoModal();
+  const heroAnimation = useOptimizedAnimation(0, "fadeUp", { mount: true });
 
   const stats = [
     { number: "24/7", label: "L'assistant décroche" },
@@ -29,12 +31,7 @@ const HomeHero = () => {
       </div>
 
       <div className="hero-content">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="hero-container"
-        >
+        <motion.div {...heroAnimation} className="hero-container">
           <h1 className="hero-title">
             La salle d&apos;abord.
             <span className="text-gradient"> L&apos;assistant s&apos;occupe du téléphone.</span>

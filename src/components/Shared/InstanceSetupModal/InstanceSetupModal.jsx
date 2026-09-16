@@ -23,6 +23,8 @@ const defaultFormData = {
   nombreCouverts: "",
   typeCuisine: "",
   twilioNumberUsage: "",
+  accessibilitePmr: "",
+  nombreChaisesBebe: "",
 };
 
 const ACCEPTED_DOC_TYPES = ".pdf,image/jpeg,image/png,image/jpg";
@@ -353,6 +355,43 @@ const InstanceSetupModal = ({ isOpen, onClose }) => {
                 placeholder="Ex: 50"
                 disabled={isLoading}
               />
+            </div>
+
+            <div className="instance-setup-form-row">
+              <div className="instance-setup-form-group">
+                <label htmlFor="instance-accessibilitePmr" className="instance-setup-form-label">
+                  Accès personnes à mobilité réduite (PMR)
+                </label>
+                <select
+                  id="instance-accessibilitePmr"
+                  name="accessibilitePmr"
+                  value={formData.accessibilitePmr}
+                  onChange={handleChange}
+                  className="instance-setup-form-input"
+                  disabled={isLoading}
+                >
+                  <option value="">Non renseigné</option>
+                  <option value="yes">Oui</option>
+                  <option value="no">Non</option>
+                </select>
+              </div>
+              <div className="instance-setup-form-group">
+                <label htmlFor="instance-nombreChaisesBebe" className="instance-setup-form-label">
+                  Nombre de chaises bébé
+                </label>
+                <input
+                  type="number"
+                  id="instance-nombreChaisesBebe"
+                  name="nombreChaisesBebe"
+                  value={formData.nombreChaisesBebe}
+                  onChange={handleChange}
+                  min={0}
+                  max={999}
+                  className="instance-setup-form-input"
+                  placeholder="Ex: 4"
+                  disabled={isLoading}
+                />
+              </div>
             </div>
 
             <div className="instance-setup-form-group">

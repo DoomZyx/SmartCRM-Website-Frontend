@@ -78,11 +78,6 @@ export function MobileNavMenu({ isOpen, onClose, menuRef }) {
               <Link to="/mon-espace" className="mobile-nav-link" onClick={onClose}>
                 Mon espace
               </Link>
-              {user?.isPlatformAdmin && (
-                <Link to="/admin-plateforme" className="mobile-nav-link" onClick={onClose}>
-                  Onboarding
-                </Link>
-              )}
               {(user?.isPlatformAdmin || user?.accessUnlocked) && (
                 <Link to="/app" className="mobile-nav-link" onClick={onClose}>
                   Tableau de bord

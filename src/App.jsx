@@ -33,6 +33,7 @@ import ServiceIATelephonique from "./pages/ServiceIATelephonique";
 import FonctionnalitesPrevues from "./pages/FonctionnalitesPrevues";
 import Onboarding from "./pages/Onboarding";
 import PlatformAdmin from "./pages/PlatformAdmin";
+import { PLATFORM_ADMIN_PATH } from "./utils/platformAdminPath";
 import { apiBaseUrl } from "./services/apiBase";
 
 /** Redirige vers le callback backend si Google a renvoyé l'utilisateur sur le frontend. */
@@ -130,14 +131,7 @@ function AppContent() {
             </ProtectedRoute>
           }
         />
-        <Route
-          path="/admin-plateforme"
-          element={
-            <ProtectedRoute>
-              <PlatformAdmin />
-            </ProtectedRoute>
-          }
-        />
+        <Route path={PLATFORM_ADMIN_PATH} element={<PlatformAdmin />} />
       </Route>
     </Routes>
   );

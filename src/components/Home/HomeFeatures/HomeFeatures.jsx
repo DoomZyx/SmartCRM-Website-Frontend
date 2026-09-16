@@ -4,6 +4,18 @@ import { Users, ClipboardList, Heart } from "lucide-react";
 import { useOptimizedAnimation } from "../../../hooks/useOptimizedAnimation";
 import "./HomeFeatures.scss";
 
+function HomeFeatureCard({ feature, delay }) {
+  const animationProps = useOptimizedAnimation(delay);
+
+  return (
+    <motion.div {...animationProps} className="feature-card">
+      <div className="feature-icon">{feature.icon}</div>
+      <h3 className="feature-title">{feature.title}</h3>
+      <p className="feature-description">{feature.description}</p>
+    </motion.div>
+  );
+}
+
 const HomeFeatures = () => {
   const features = [
     {
@@ -43,20 +55,9 @@ const HomeFeatures = () => {
         </motion.div>
 
         <div className="features-grid">
-          {features.map((feature, index) => {
-            const cardAnimation = useOptimizedAnimation(index + 1);
-            return (
-              <motion.div
-                key={index}
-                {...cardAnimation}
-                className="feature-card"
-              >
-                <div className="feature-icon">{feature.icon}</div>
-                <h3 className="feature-title">{feature.title}</h3>
-                <p className="feature-description">{feature.description}</p>
-              </motion.div>
-            );
-          })}
+          {features.map((feature, index) => (
+            <HomeFeatureCard key={feature.title} feature={feature} delay={index * 0.08} />
+          ))}
         </div>
       </div>
     </section>

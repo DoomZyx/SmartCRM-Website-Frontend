@@ -3,8 +3,8 @@ import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import "./AuthLoading.scss";
 
-const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated, isInitialized } = useAuth();
+const ProtectedRoute = ({ children, requirePlatformAdmin = false }) => {
+  const { isAuthenticated, isInitialized, user } = useAuth();
   const location = useLocation();
 
   if (!isInitialized) {
@@ -18,6 +18,10 @@ const ProtectedRoute = ({ children }) => {
 
   if (!isAuthenticated) {
     return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  if (requirePlatformAdmin && !user?.isPlatformAdmin) {
+    return <Navigate to="/" replace />;
   }
 
   return children;

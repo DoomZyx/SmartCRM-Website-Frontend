@@ -7,6 +7,7 @@
 
 .platform-admin-toolbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
@@ -126,4 +127,48 @@
 
 .platform-admin-empty {
   color: $text-muted;
+}
+
+.platform-admin-login {
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+
+  label {
+    font-size: 0.85rem;
+    color: $text-secondary;
+  }
+
+  input {
+    padding: 10px 14px;
+    border: 1px solid $border-primary;
+    border-radius: 12px;
+    background: $bg-secondary;
+    color: $text-primary;
+  }
+
+  .btn {
+    margin-top: 0.5rem;
+  }
+}
+
+.platform-admin-totp-setup {
+  p {
+    margin: 0 0 0.75rem;
+    color: $text-secondary;
+    font-size: 0.9rem;
+  }
+}
+
+.platform-admin-totp-qr {
+  display: block;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 0.5rem;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid $border-primary;
+  background: #fff;
 }

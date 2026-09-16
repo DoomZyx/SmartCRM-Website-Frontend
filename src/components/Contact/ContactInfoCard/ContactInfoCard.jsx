@@ -4,9 +4,7 @@ import { useOptimizedAnimation } from "../../../hooks/useOptimizedAnimation";
 import "./ContactInfoCard.scss";
 
 const ContactInfoCard = ({ icon, title, value, description, delay = 0 }) => {
-  // Utiliser l'index basé sur le delay pour garder la compatibilité
-  const index = Math.round(delay / 0.1);
-  const animationProps = useOptimizedAnimation(index);
+  const animationProps = useOptimizedAnimation(delay);
 
   return (
     <motion.div {...animationProps} className="contact-info-card">

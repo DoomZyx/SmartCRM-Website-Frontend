@@ -5,7 +5,11 @@ export function syncDashboardSession(user) {
     localStorage.removeItem("tenantId");
     return;
   }
-  const tenantId = user.smartcrmInstanceId || user.tenants?.[0]?.id || "";
+  const tenantId =
+    user.smartcrmInstanceId ||
+    user.tenants?.find((item) => item.status === "active")?.id ||
+    user.tenants?.[0]?.id ||
+    "";
   localStorage.setItem(
     "user",
     JSON.stringify({

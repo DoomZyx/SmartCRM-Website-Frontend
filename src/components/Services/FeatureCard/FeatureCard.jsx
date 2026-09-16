@@ -10,9 +10,7 @@ const FeatureCard = ({
   delay = 0,
   variant = "default",
 }) => {
-  // Utiliser l'index basé sur le delay pour garder la compatibilité
-  const index = Math.round(delay / 0.1);
-  const animationProps = useOptimizedAnimation(index);
+  const animationProps = useOptimizedAnimation(delay);
 
   return (
     <motion.div {...animationProps} className={`feature-card ${variant}`}>

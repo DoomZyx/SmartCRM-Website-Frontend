@@ -18,11 +18,6 @@ const HeaderActions = () => {
           <Link to="/mon-espace" className="header-text-link">
             Mon espace
           </Link>
-          {user?.isPlatformAdmin && (
-            <Link to="/admin-plateforme" className="header-text-link">
-              Onboarding
-            </Link>
-          )}
           {showDashboard && (
             <Link to="/app" className="header-text-link">
               Tableau de bord
