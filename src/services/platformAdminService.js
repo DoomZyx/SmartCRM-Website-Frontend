@@ -62,8 +62,11 @@ export function loginPlatformAdmin({ email, password, accessCode }) {
 }
 
 export function startPlatformGoogleLogin() {
-  if (!API_BASE_URL) return;
-  window.location.href = `${API_BASE_URL}/api/auth/google?return=platform`;
+  const base = apiBaseUrl();
+  if (!base) {
+    throw new Error("API non configurée (VITE_API_BASE_URL).");
+  }
+  window.location.assign(`${base}/api/auth/google?return=platform`);
 }
 
 export async function fetchPlatformChallenge() {

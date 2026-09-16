@@ -234,7 +234,13 @@ const PlatformAdmin = () => {
                 type="button"
                 className="btn btn-secondary"
                 disabled={isLoggingIn}
-                onClick={() => startPlatformGoogleLogin()}
+                onClick={() => {
+                  try {
+                    startPlatformGoogleLogin();
+                  } catch (err) {
+                    setLoginError(err.message);
+                  }
+                }}
               >
                 Continuer avec Google
               </button>
